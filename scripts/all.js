@@ -1771,12 +1771,8 @@ define("scripts/lib/buzz.js", function(exports){
     el: document.createElement( 'audio' ),
 
     sound: function( src, options ) {
+      var pid = 0, events = [], eventsOnce = {}, supported = buzz.isSupported();
       options = options || {};
-
-      var pid = 0,
-          events = [],
-          eventsOnce = {},
-          supported = buzz.isSupported();
 
       // public
       this.load = function() {
@@ -2131,16 +2127,12 @@ define("scripts/lib/buzz.js", function(exports){
             return this;
           }
 
+          var that = this, efunc = function( e ) { func.call( that, e ); };
           types = types.split( ' ' );
 
-          var that = this,
-              efunc = function( e ) { func.call( that, e ); };
-
-          for( var t = 0; t < types.length; t++ ) {
-            var type = types[ t ],
-                idx = type;
-                type = idx.split( '.' )[ 0 ];
-
+          for ( var t = 0; t < types.length; t++ ) {
+            var type = types[ t ], idx = type;
+            type = idx.split( '.' )[ 0 ];
             events.push( { idx: idx, func: efunc } );
             this.sound.addEventListener( type, efunc, true );
           }
@@ -2155,11 +2147,11 @@ define("scripts/lib/buzz.js", function(exports){
 
           types = types.split( ' ' );
 
-          for( var t = 0; t < types.length; t++ ) {
+          for ( var t = 0; t < types.length; t++ ) {
             var idx = types[ t ],
                 type = idx.split( '.' )[ 0 ];
 
-            for( var i = 0; i < events.length; i++ ) {
+            for ( var i = 0; i < events.length; i++ ) {
               var namespace = events[ i ].idx.split( '.' );
 
               if ( events[ i ].idx == idx || ( namespace[ 1 ] && namespace[ 1 ] == idx.replace( '.', '' ) ) ) {
@@ -2198,10 +2190,10 @@ define("scripts/lib/buzz.js", function(exports){
 
           types = types.split( ' ' );
 
-          for( var t = 0; t < types.length; t++ ) {
+          for ( var t = 0; t < types.length; t++ ) {
             var idx = types[ t ];
 
-            for( var i = 0; i < events.length; i++ ) {
+            for ( var i = 0; i < events.length; i++ ) {
               var eventType = events[ i ].idx.split( '.' );
 
               if ( events[ i ].idx == idx || ( eventType[ 0 ] && eventType[ 0 ] == idx.replace( '.', '' ) ) ) {
@@ -2306,10 +2298,9 @@ define("scripts/lib/buzz.js", function(exports){
 
         // private
         function timerangeToArray( timeRange ) {
-          var array = [],
-              length = timeRange.length - 1;
+          var array = [], length = timeRange.length - 1;
 
-          for( var i = 0; i <= length; i++ ) {
+          for ( var i = 0; i <= length; i++ ) {
             array.push({
               start: timeRange.start( length ),
               end: timeRange.end( length )
@@ -2345,7 +2336,7 @@ define("scripts/lib/buzz.js", function(exports){
           this.sound = document.createElement( 'audio' );
 
           if ( src instanceof Array ) {
-            for( var j in src ) {
+            for ( var j in src ) {
               if (src.hasOwnProperty(j)) {
                 addSource( this.sound, src[ j ] );
               }
@@ -2531,8 +2522,7 @@ define("scripts/lib/buzz.js", function(exports){
 
         // private
         function fn() {
-          var args = argsToArray( null, arguments ),
-              func = args.shift();
+          var args = argsToArray( null, arguments ), func = args.shift();
 
           for ( var i = 0; i < sounds.length; i++ ) {
             sounds[ i ][ func ].apply( sounds[ i ], args );
