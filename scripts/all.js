@@ -572,7 +572,7 @@ define("scripts/scene.js", function( exports ){
 
   // fixed elements
   var background = require("scripts/object/background");
-  var fps = require("scripts/object/fps");
+  //var fps = require("scripts/object/fps");
 
   // home menu elements
   var homeMask = require("scripts/object/home-mask");
@@ -843,10 +843,9 @@ define("scripts/timeline.js", function( exports ){
   //var timer = timeline;
   // <or>
   //var timer = timeline.use( name ).init( 10 ); // to use a new timeline instance
-  //
   //var t = timer.createTask(...);
-  //t.stop();
   //
+  //t.stop();
   //timer.setTimeout(...);
   //timer.setInterval(...);
   //timer.getFPS();
@@ -887,11 +886,13 @@ define("scripts/timeline.js", function( exports ){
    * @return {Task}   task    a task instance
    */
   ClassTimer.prototype.createTask = function( conf ){
-    /* e.g. timer.createTask({
+    /*
+    timer.createTask({
       start: 500, duration: 2000, data: [a, b, c,..], object: module,
       onTimeUpdate: fn(time, a, b, c,..), onTimeStart: fn(a, b, c,..), onTimeEnd: fn(a, b, c,..),
       recycle: []
-    }); */
+    });
+    */
     var task = createTask( conf );
       this.addingTasks.unshift( task );
       this.adding = 1;
@@ -933,7 +934,6 @@ define("scripts/timeline.js", function( exports ){
    * @param {Number}   time  unit: ms
    */
   ClassTimer.prototype.setTimeout = function( fn, time ){
-    // e.g. setTimeout( fn, time );
     return this.createTask({ start: time, duration: 0, onTimeStart: fn });
   };
 
@@ -943,7 +943,6 @@ define("scripts/timeline.js", function( exports ){
    * @param {Number}   time  unit: ms
    */
   ClassTimer.prototype.setInterval = function( fn, time ){
-    // e.g. setInterval( fn, time );
     var timer = setInterval( fn, time );
     return {
       stop: function(){
@@ -953,16 +952,20 @@ define("scripts/timeline.js", function( exports ){
   };
 
   /**
-   * get the current fps
-   * @return {Number} fps number
+   * get the current FPS
+   * @return {Number} FPS
    */
+  /*
   ClassTimer.prototype.getFPS = function(){
     var t = now(), c = this.count, fps = c / ( t - this.startTime ) * 1e3;
+
     if( c > 1e3 )
       this.count = 0,
       this.startTime = t;
+
     return fps;
   };
+  */
 
   // private
   ClassTimer.prototype.start = function(){
@@ -4361,21 +4364,23 @@ define("scripts/object/flash.js", function( exports ){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\fps.js
  */
+/*
 define("scripts/object/fps.js", function( exports ){
-  //var layer = require("scripts/layer");
-  //var timeline = require("scripts/timeline");
-  //var text, fps = "fps: ";
+  var layer = require("scripts/layer");
+  var timeline = require("scripts/timeline");
+  var text, fps = "FPS: ";
 
-  //exports.set = function(){
-  //  text = layer.createText( "default", fps + "0", 4, 470 ).attr( "fill", "#ccc" );
-  //};
+  exports.set = function(){
+    text = layer.createText( "default", fps + "0", 4, 470 ).attr( "fill", "#ccc" );
+  };
 
-  //exports.update = function(){
-  //  text.attr( "text", fps + ( timeline.getFPS() >> 0 ) );
-  //};
+  exports.update = function(){
+    text.attr( "text", fps + ( timeline.getFPS() >> 0 ) );
+  };
 
   return exports;
 });
+*/
 
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\game-over.js
