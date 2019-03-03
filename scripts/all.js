@@ -1011,11 +1011,9 @@ define("scripts/timeline.js", function( exports ){
   };
 
   timeline.use = function( name ){
-    var module;
+    var module = timerCache[ name ];
 
-    if( module = timerCache[ name ] )
-      return module;
-    else
+    if( !module )
       module = timerCache[ name ] = new ClassTimer;
 
     return module;
