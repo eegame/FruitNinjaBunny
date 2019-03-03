@@ -4285,14 +4285,13 @@ define("scripts/object/flame.js", function( exports ){
         if( image )
           image.remove();
 
-        for(var p in flames)
+        for( var p in flames )
           removeFlame( flames, p );
       }
     };
 
-    var nx = ox, ny = oy;
-    var image = layer.image("images/smoke.png", nx - 21, ny - 21, 43, 43).hide();
-    var flames = {};
+    var nx = ox, ny = oy, flames = {};
+    var image = layer.image( "images/smoke.png", nx - 21, ny - 21, 43, 43 ).hide();
 
     timer1 = timeline.setTimeout(function(){
       image.show();
@@ -4321,10 +4320,8 @@ define("scripts/object/flash.js", function( exports ){
   var tween = require("scripts/lib/tween");
   var sound = require("scripts/lib/sound");
 
-  var image, xDiff = 0, yDiff = 0;
-  var anim = tween.quadratic.cio;
-  var anims = [];
-  var dur = 100;
+  var image, xDiff = 0, yDiff = 0, dur = 100;
+  var anim = tween.quadratic.cio, anims = [];
 
   exports.set = function(){
     image = layer.createImage( "flash", "images/flash.png", 0, 0, 180, 20 ).hide();
