@@ -25,7 +25,7 @@ void function(global){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\collide.js
  */
-define("scripts/collide.js", function(exports){
+define("scripts/collide.js", function( exports ){
   var fruit = require("scripts/factory/fruit");
   var ucren = require("scripts/lib/ucren");
 
@@ -114,7 +114,7 @@ define("scripts/collide.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\control.js
  */
-define("scripts/control.js", function(exports){
+define("scripts/control.js", function( exports ){
   var ucren = require("scripts/lib/ucren");
   var knife = require("scripts/object/knife");
   var message = require("scripts/message");
@@ -358,7 +358,7 @@ define("scripts/game.js", function( exports ){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\layer.js
  */
-define("scripts/layer.js", function(exports){
+define("scripts/layer.js", function( exports ){
   /**
    * layer manager
    */
@@ -422,7 +422,7 @@ define("scripts/layer.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\main.js
  */
-define("scripts/main.js", function(exports){
+define("scripts/main.js", function( exports ){
   var timeline = require("scripts/timeline");
   var tools = require("scripts/tools");
   var scene = require("scripts/scene");
@@ -518,7 +518,7 @@ define("scripts/main.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\message.js
  */
-define("scripts/message.js", function(exports){
+define("scripts/message.js", function( exports ){
   /**
    * a simple message manager
    */
@@ -562,7 +562,7 @@ define("scripts/message.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\scene.js
  */
-define("scripts/scene.js", function(exports){
+define("scripts/scene.js", function( exports ){
   var ucren = require("scripts/lib/ucren");
   var sound = require("scripts/lib/sound");
   var fruit = require("scripts/factory/fruit");
@@ -727,7 +727,7 @@ define("scripts/scene.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\state.js
  */
-define("scripts/state.js", function(exports){
+define("scripts/state.js", function( exports ){
   /**
    * a simple state manager
    */
@@ -831,7 +831,7 @@ define("scripts/state.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\timeline.js
  */
-define("scripts/timeline.js", function(exports){
+define("scripts/timeline.js", function( exports ){
   /**
    * a easy timeline manager
    * @version 1.0
@@ -1072,7 +1072,7 @@ define("scripts/timeline.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\tools.js
  */
-define("scripts/tools.js", function(exports){
+define("scripts/tools.js", function( exports ){
   exports.unsetObject = function( object ){
     for(var i in object)
       if(object.hasOwnProperty(i) && typeof object[i] == "function")
@@ -1113,7 +1113,7 @@ define("scripts/tools.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\factory\displacement.js
  */
-define("scripts/factory/displacement.js", function(exports){
+define("scripts/factory/displacement.js", function( exports ){
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline");
   var tween = require("scripts/lib/tween");
@@ -1181,7 +1181,7 @@ define("scripts/factory/displacement.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\factory\fruit.js
  */
-define("scripts/factory/fruit.js", function(exports){
+define("scripts/factory/fruit.js", function( exports ){
   var layer = require("scripts/layer");
   var ucren = require("scripts/lib/ucren");
   var timeline = require("scripts/timeline").use( "fruit" ).init( 1 );
@@ -1304,7 +1304,6 @@ define("scripts/factory/fruit.js", function(exports){
     this.brokend = true;
 
     var index;
-
     if( ( index = fruitCache.indexOf( this ) ) > -1 )
       fruitCache.splice( index, 1 );
 
@@ -1566,7 +1565,7 @@ define("scripts/factory/fruit.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\factory\juice.js
  */
-define("scripts/factory/juice.js", function(exports){
+define("scripts/factory/juice.js", function( exports ){
   /**
    * 果汁
    */
@@ -1643,7 +1642,7 @@ define("scripts/factory/juice.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\factory\rotate.js
  */
-define("scripts/factory/rotate.js", function(exports){
+define("scripts/factory/rotate.js", function( exports ){
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline");
   var ucren = require("scripts/lib/ucren");
@@ -1680,7 +1679,7 @@ define("scripts/factory/rotate.js", function(exports){
         start: start,
         duration: animDur,
         object: this,
-        data: [ 1, z ],
+        data: [1, z],
         onTimeUpdate: this.onZooming,
         recycle: this.anims
       });
@@ -1722,7 +1721,7 @@ define("scripts/factory/rotate.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\lib\buzz.js
  */
-define("scripts/lib/buzz.js", function(exports){
+define("scripts/lib/buzz.js", function( exports ){
   // ----------------------------------------------------------------------------
   // Buzz, a Javascript HTML5 Audio library
   // v 1.0.x beta
@@ -2601,7 +2600,7 @@ define("scripts/lib/buzz.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\lib\raphael.js
  */
-define("scripts/lib/raphael.js", function(exports){
+define("scripts/lib/raphael.js", function( exports ){
   /*
    * Raphael 1.5.2 - JavaScript Vector Library
    *
@@ -2619,7 +2618,7 @@ define("scripts/lib/raphael.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\lib\sound.js
  */
-define("scripts/lib/sound.js", function(exports){
+define("scripts/lib/sound.js", function( exports ){
   /**
    * 简易声效控制
    */
@@ -2679,7 +2678,7 @@ define("scripts/lib/sound.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\lib\tween.js
  */
-define("scripts/lib/tween.js", function(exports){
+define("scripts/lib/tween.js", function( exports ){
   exports.exponential = function(){};
   exports.exponential.co = function(index, offset, target, framesNum){ return (index == framesNum) ? offset + target : target * (-Math.pow(2, -10 * index / framesNum) + 1) + offset; };
   // exports.exponential.ci = function(index, offset, target, framesNum){ return (index == 0) ? offset : target * Math.pow(2, 10 * (index / framesNum - 1)) + offset; }
@@ -2706,7 +2705,7 @@ define("scripts/lib/tween.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\lib\ucren.js
  */
-define("scripts/lib/ucren.js", function(exports){
+define("scripts/lib/ucren.js", function( exports ){
   /**
    * ucren-lite
    * filename: boot.js
@@ -3366,7 +3365,7 @@ define("scripts/lib/ucren.js", function(exports){
         var words = sourceString || cw, re = [];
 
         ucren.each( length, function( index ){
-          re[index] = words.charAt( this.randomNumber( words.length ));
+          re[index] = words.charAt( this.randomNumber( words.length ) );
         }.bind( this ));
 
         return re.join( "" );
@@ -4079,7 +4078,7 @@ define("scripts/lib/ucren.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\background.js
  */
-define("scripts/object/background.js", function(exports){
+define("scripts/object/background.js", function( exports ){
   var ucren = require("scripts/lib/ucren");
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline");
@@ -4110,7 +4109,7 @@ define("scripts/object/background.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\console.js
  */
-define("scripts/object/console.js", function(exports){
+define("scripts/object/console.js", function( exports ){
   var layer = require("scripts/layer");
 
   var x = 16, y = 0;
@@ -4137,7 +4136,7 @@ define("scripts/object/console.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\developing.js
  */
-define("scripts/object/developing.js", function(exports){
+define("scripts/object/developing.js", function( exports ){
   var layer = require("scripts/layer");
   var tween = require("scripts/lib/tween");
   var timeline = require("scripts/timeline");
@@ -4192,7 +4191,7 @@ define("scripts/object/developing.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\flame.js
  */
-define("scripts/object/flame.js", function(exports){
+define("scripts/object/flame.js", function( exports ){
   /**
    * 火焰模块
    */
@@ -4316,7 +4315,7 @@ define("scripts/object/flame.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\flash.js
  */
-define("scripts/object/flash.js", function(exports){
+define("scripts/object/flash.js", function( exports ){
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline").use( "flash" ).init( 10 );
   var tween = require("scripts/lib/tween");
@@ -4365,7 +4364,7 @@ define("scripts/object/flash.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\fps.js
  */
-define("scripts/object/fps.js", function(exports){
+define("scripts/object/fps.js", function( exports ){
   //var layer = require("scripts/layer");
   //var timeline = require("scripts/timeline");
   //var text, fps = "fps: ";
@@ -4384,7 +4383,7 @@ define("scripts/object/fps.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\game-over.js
  */
-define("scripts/object/game-over.js", function(exports){
+define("scripts/object/game-over.js", function( exports ){
   var layer = require("scripts/layer");
   var tween = require("scripts/lib/tween");
   var timeline = require("scripts/timeline");
@@ -4439,7 +4438,7 @@ define("scripts/object/game-over.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\home-desc.js
  */
-define("scripts/object/home-desc.js", function(exports){
+define("scripts/object/home-desc.js", function( exports ){
   var displacement = require("scripts/factory/displacement");
   var tween = require("scripts/lib/tween");
 
@@ -4450,7 +4449,7 @@ define("scripts/object/home-desc.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\home-mask.js
  */
-define("scripts/object/home-mask.js", function(exports){
+define("scripts/object/home-mask.js", function( exports ){
   var displacement = require("scripts/factory/displacement");
   var tween = require("scripts/lib/tween");
 
@@ -4461,7 +4460,7 @@ define("scripts/object/home-mask.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\knife.js
  */
-define("scripts/object/knife.js", function(exports){
+define("scripts/object/knife.js", function( exports ){
   var timeline = require("scripts/timeline");
   var layer = require("scripts/layer").getLayer( "knife" );
   var ucren = require("scripts/lib/ucren");
@@ -4567,7 +4566,7 @@ define("scripts/object/knife.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\light.js
  */
-define("scripts/object/light.js", function(exports){
+define("scripts/object/light.js", function( exports ){
   /**
    * 炸弹爆炸时的光线
    */
@@ -4653,7 +4652,7 @@ define("scripts/object/light.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\logo.js
  */
-define("scripts/object/logo.js", function(exports){
+define("scripts/object/logo.js", function( exports ){
   var displacement = require("scripts/factory/displacement");
   var tween = require("scripts/lib/tween");
 
@@ -4664,7 +4663,7 @@ define("scripts/object/logo.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\lose.js
  */
-define("scripts/object/lose.js", function(exports){
+define("scripts/object/lose.js", function( exports ){
   var layer = require("scripts/layer");
   var tween = require("scripts/lib/tween");
   var timeline = require("scripts/timeline");
@@ -4806,7 +4805,7 @@ define("scripts/object/lose.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\ninja.js
  */
-define("scripts/object/ninja.js", function(exports){
+define("scripts/object/ninja.js", function( exports ){
   var displacement = require("scripts/factory/displacement");
   var tween = require("scripts/lib/tween");
 
@@ -4821,7 +4820,7 @@ define("scripts/object/ninja.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\new-game.js
  */
-define("scripts/object/new-game.js", function(exports){
+define("scripts/object/new-game.js", function( exports ){
   var rotate = require("scripts/factory/rotate");
   var tween = require("scripts/lib/tween");
 
@@ -4833,7 +4832,7 @@ define("scripts/object/new-game.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\quit.js
  */
-define("scripts/object/quit.js", function(exports){
+define("scripts/object/quit.js", function( exports ){
   var rotate = require("scripts/factory/rotate");
   var tween = require("scripts/lib/tween");
 
@@ -4845,7 +4844,7 @@ define("scripts/object/quit.js", function(exports){
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\score.js
  */
-define("scripts/object/score.js", function(exports){
+define("scripts/object/score.js", function( exports ){
   var layer = require("scripts/layer");
   var tween = require("scripts/lib/tween");
   var timeline = require("scripts/timeline");
