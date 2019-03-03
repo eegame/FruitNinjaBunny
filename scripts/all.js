@@ -130,7 +130,7 @@ define("scripts/control.js", function(exports){
   exports.installDragger = function(){
     var dragger = new ucren.BasicDrag({type: "calc"});
 
-    dragger.on("returnValue", function( dx, dy, x, y, kf){
+    dragger.on("returnValue", function(dx, dy, x, y, kf){
       if( kf = knife.through(x - canvasLeft, y - canvasTop))
         message.postMessage(kf, "slice");
     });
@@ -144,7 +144,7 @@ define("scripts/control.js", function(exports){
 
   exports.fixCanvasPos = function(){
     var de = document.documentElement;
-    var fix = function( e ){
+    var fix = function(e){
       canvasLeft = (de.clientWidth - 320) / 2;
       canvasTop = (de.clientHeight - 480) / 2 - 40;
     };
@@ -2157,7 +2157,7 @@ define("scripts/lib/buzz.js", function(exports){
               if ( events[ i ].idx == idx || ( namespace[ 1 ] && namespace[ 1 ] == idx.replace( '.', '' ) ) ) {
                 this.sound.removeEventListener( type, events[ i ].func, true );
                 // remove event
-                events.splice(i, 1);
+                events.splice( i, 1 );
               }
             }
           }
