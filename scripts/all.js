@@ -2625,7 +2625,7 @@ define("scripts/lib/sound.js", function( exports ){
    */
 
   /**
-   * 使用方法：
+   * 使用方法
    *
    * var sound = require("scripts/lib/sound/main");
    * var snd = sound.create("sounds/myfile");
@@ -2655,7 +2655,7 @@ define("scripts/lib/sound.js", function( exports ){
   ClassBuzz.prototype.stop = function(){
     this.sound.fadeOut( 1e3, function(){
       this.pause();
-    } );
+    });
   };
 
   exports.create = function( src ){
@@ -2680,8 +2680,8 @@ define("scripts/lib/sound.js", function( exports ){
  */
 define("scripts/lib/tween.js", function( exports ){
   exports.exponential = function(){};
-  exports.exponential.co = function(index, offset, target, framesNum){ return (index == framesNum) ? offset + target : target * (-Math.pow(2, -10 * index / framesNum) + 1) + offset; };
-  // exports.exponential.ci = function(index, offset, target, framesNum){ return (index == 0) ? offset : target * Math.pow(2, 10 * (index / framesNum - 1)) + offset; }
+  exports.exponential.co = function(index, offset, target, framesNum){ return index == framesNum ? offset + target : target * (-Math.pow(2, -10 * index / framesNum) + 1) + offset; };
+  //exports.exponential.ci = function(index, offset, target, framesNum){ return index == 0 ? offset : target * Math.pow(2, 10 * (index / framesNum - 1)) + offset; }
 
   exports.bounce = function(){};
   exports.bounce.co = function(index, offset, target, framesNum){ if((index /= framesNum) < (1 / 2.75)) return target * (7.5625 * index * index) + offset; else if(index < (2 / 2.75)) return target * (7.5625 * (index -= (1.5 / 2.75)) * index + .75) + offset; else if(index < (2.5 / 2.75)) return target * (7.5625 * (index -= (2.25 / 2.75)) * index + .9375) + offset; else return target * (7.5625 * (index -= (2.625 / 2.75)) * index + .984375) + offset; };
