@@ -2628,7 +2628,6 @@ define("scripts/lib/sound.js", function( exports ){
    * 使用方法：
    *
    * var sound = require("scripts/lib/sound/main");
-   *
    * var snd = sound.create("sounds/myfile");
    * snd.play();
    */
@@ -3659,9 +3658,7 @@ define("scripts/lib/ucren.js", function( exports ){
       },
 
       addClass: function( name ){
-        var el, className;
-        el = this.dom;
-        className = " " + el.className + " ";
+        var el = this.dom, className = " " + el.className + " ";
 
         if( className.indexOf( " " + name + " " ) == -1 ){
           className += name;
@@ -3674,9 +3671,7 @@ define("scripts/lib/ucren.js", function( exports ){
       },
 
       delClass: function( name ){
-        var el, className;
-        el = this.dom;
-        className = " " + el.className + " ";
+        var el = this.dom, className = " " + el.className + " ";
 
         if( className.indexOf( " " + name + " " ) > -1 ){
           className = className.replace( " " + name + " ", " " );
@@ -3797,8 +3792,7 @@ define("scripts/lib/ucren.js", function( exports ){
       },
 
       add: function( dom ){
-        var el;
-        el = ucren.Element( dom );
+        var el = ucren.Element( dom );
         this.dom.appendChild( el.dom );
         return this;
       },
@@ -3820,8 +3814,7 @@ define("scripts/lib/ucren.js", function( exports ){
       },
 
       insert: function( dom ){
-        var tdom;
-        tdom = this.dom;
+        var tdom = this.dom;
 
         if( tdom.firstChild ){
           tdom.insertBefore( dom, tdom.firstChild );
@@ -3834,30 +3827,27 @@ define("scripts/lib/ucren.js", function( exports ){
       },
 
       addEvents: function( conf ){
-        var blank, el, rtn;
-        blank = {};
-        rtn = {};
-        el = this.dom;
+        var el = this.dom, blank = {}, rtn = {};
+
         ucren.each( conf, function( item, key ){
           rtn[key] = ucren.addEvent( el, key, item );
         });
+
         return rtn;
       },
 
       removeEvents: function( conf ){
-        var blank, el;
-        blank = {};
-        el = this.dom;
+        var el = this.dom, blank = {};
+
         ucren.each( conf, function( item, key ){
           ucren.delEvent( el, key, item );
         });
+
         return this;
       },
 
       getPos: function(){
-        var el, parentNode, pos, box, offset;
-        el = this.dom;
-        pos = {};
+        var el = this.dom, pos = {}, box, offset, parentNode;
 
         if( el.getBoundingClientRect ){
           box = el.getBoundingClientRect();
@@ -3917,8 +3907,7 @@ define("scripts/lib/ucren.js", function( exports ){
       },
 
       getSize: function(){
-        var dom = this.dom;
-        var display = this.style( "display" );
+        var dom = this.dom, display = this.style( "display" );
 
         if ( display && display !== "none" ) {
           return { width: dom.offsetWidth, height: dom.offsetHeight };
@@ -3930,7 +3919,6 @@ define("scripts/lib/ucren.js", function( exports ){
           position:   style.position,
           display:    style.display
         };
-
         var newStyles = {
           visibility: "hidden",
           display:    "block"
@@ -3958,8 +3946,7 @@ define("scripts/lib/ucren.js", function( exports ){
       },
 
       usePNGbackground: function( image ){
-        var dom;
-        dom = this.dom;
+        var dom = this.dom;
 
         if( /\.png$/i.test( image ) && ucren.isIe6 ){
           dom.style.filter =
@@ -3983,17 +3970,17 @@ define("scripts/lib/ucren.js", function( exports ){
 
           if( !ucren.isIe ){
             es.opacity = value / 100;
-          /* }else if( es.filter === "string" ){ */
           }
+          //else if( es.filter === "string" ){}
           else{
-            if ( element.currentStyle && !element.currentStyle.hasLayout )
+            if( element.currentStyle && !element.currentStyle.hasLayout )
               es.zoom = 1;
 
-            if ( reOpacity.test( es.filter )) {
+            if( reOpacity.test( es.filter )){
               value = value >= 99.99 ? "" : ( "alpha( opacity=" + value + " )" );
               es.filter = es.filter.replace( reOpacity, value );
             }
-            else {
+            else{
               es.filter += " alpha( opacity=" + value + " )";
             }
           }
@@ -4040,7 +4027,7 @@ define("scripts/lib/ucren.js", function( exports ){
             this.display( false );
             callback && callback();
           }
-          else {
+          else{
             this.fadingNumber -= 10;
           }
         }.bind( this );
@@ -4053,10 +4040,10 @@ define("scripts/lib/ucren.js", function( exports ){
 
       useMouseAction: function( className, actions ){
         /**
-         *  调用示例：  el.useMouseAction( "xbutton", "over,out,down,up" );
-         *  使用效果：  el 会在 "xbutton xbutton-over","xbutton xbutton-out","xbutton xbutton-down","xbutton xbutton-up"
-         *             等四个 className 中根据相应的鼠标事件来进行切换。
-         *  特别提示：  useMouseAction 可使用不同参数多次调用。
+         * 调用示例：el.useMouseAction( "xbutton", "over,out,down,up" );
+         * 使用效果：el会在"xbutton xbutton-over", "xbutton xbutton-out", "xbutton xbutton-down", "xbutton xbutton-up"
+         *           等四个className中根据相应的鼠标事件来进行切换。
+         * 特别提示：useMouseAction可使用不同参数多次调用。
          */
         if( !this.MouseAction )
           this.MouseAction = new ucren.MouseAction({ element: this });
@@ -4113,8 +4100,7 @@ define("scripts/object/background.js", function( exports ){
 define("scripts/object/console.js", function( exports ){
   var layer = require("scripts/layer");
 
-  var x = 16, y = 0;
-  var texts = [];
+  var x = 16, y = 0, texts = [];
 
   exports.set = function(){
   };
@@ -4200,13 +4186,11 @@ define("scripts/object/flame.js", function( exports ){
   var timeline = require("scripts/timeline");
   var ucren = require("scripts/lib/ucren");
 
-  /*
-  raphael.path('M 27,122 Q 9,42 27,21 45,42 27,122')
-    .attr({
-      stroke: 'none',
-      fill: '180-#D8D380-#EDED7A-#D8D380'
-    });
-  */
+  //raphael.path('M 27,122 Q 9,42 27,21 45,42 27,122')
+  //  .attr({
+  //    stroke: 'none',
+  //    fill: '180-#D8D380-#EDED7A-#D8D380'
+  //  });
 
   // 缩写
   var guid = 0, trunc = parseInt, math = Math,
