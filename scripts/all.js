@@ -1150,7 +1150,7 @@ define("scripts/factory/displacement.js", function( exports ){
     };
 
     module.show = function( start ){
-      createTask(  start, animDur, origX, origY, targetX, targetY, anim.show, "show" );
+      createTask( start, animDur, origX, origY, targetX, targetY, anim.show, "show" );
     };
 
     module.hide = function(){
@@ -2133,7 +2133,7 @@ define("scripts/lib/buzz.js", function( exports ){
           for ( var t = 0; t < types.length; t++ ) {
             var type = types[ t ], idx = type;
             type = idx.split( '.' )[ 0 ];
-            events.push( { idx: idx, func: efunc } );
+            events.push({ idx: idx, func: efunc });
             this.sound.addEventListener( type, efunc, true );
           }
 
