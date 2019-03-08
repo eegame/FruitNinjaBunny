@@ -243,7 +243,7 @@ define("scripts/game.js", function( exports ){
 
     scoreNum = 0;
     volleyNum = 2;
-	volleyMultipleNum = 5;
+    volleyMultipleNum = 5;
     fruits.length = 0;
 
     endSnd = sound.create( "sound/end" );
@@ -2810,7 +2810,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
   // Array.prototype.every
   // if( !Array.prototype.every )
-  Array.prototype.every = function( fn, context ) {
+  Array.prototype.every = function( fn, context ){
     for( var i = 0, len = this.length; i < len; i++ )
       if( !fn.call( context, this[i], i, this ) )
         return false;
@@ -2819,7 +2819,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
   // Array.prototype.filter
   // if( !Array.prototype.filter )
-  Array.prototype.filter = function( fn, context ) {
+  Array.prototype.filter = function( fn, context ){
     var result = [], val;
 
     for( var i = 0, len = this.length; i < len; i++ )
@@ -2830,14 +2830,14 @@ define("scripts/lib/ucren.js", function( exports ){
 
   // Array.prototype.forEach
   // if( !Array.prototype.forEach )
-  Array.prototype.forEach = function( fn, context ) {
+  Array.prototype.forEach = function( fn, context ){
     for( var i = 0, len = this.length; i < len; i++ )
       fn.call( context, this[i], i, this );
   };
 
   // Array.prototype.map
   // if( !Array.prototype.map )
-  Array.prototype.map = function( fn, context ) {
+  Array.prototype.map = function( fn, context ){
     var result = [];
 
     for( var i = 0, len = this.length; i < len; i++ )
@@ -2847,7 +2847,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
   // Array.prototype.some
   // if( !Array.prototype.some )
-  Array.prototype.some = function( fn, context ) {
+  Array.prototype.some = function( fn, context ){
     for( var i = 0, len = this.length; i < len; i++ )
       if( fn.call( context, this[i], i, this ) )
         return true;
@@ -2857,7 +2857,7 @@ define("scripts/lib/ucren.js", function( exports ){
   Array.prototype.invoke = function( method/*, args*/ ){
     var args = slice.call( arguments, 1 );
 
-    this.forEach( function( item ){
+    this.forEach(function( item ){
       if( item instanceof Array )
         item[0][method].apply( item[0], item.slice( 1 ) );
       else
