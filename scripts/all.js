@@ -243,6 +243,7 @@ define("scripts/game.js", function( exports ){
 
     scoreNum = 0;
     volleyNum = 2;
+	volleyMultipleNum = 5;
     fruits.length = 0;
 
     endSnd = sound.create( "sound/end" );
@@ -269,7 +270,7 @@ define("scripts/game.js", function( exports ){
   exports.applyScore = function( score ){
     if( score > volleyNum * volleyMultipleNum )
       volleyNum++,
-      volleyMultipleNum += 50;
+      volleyMultipleNum += 5;
   };
 
   exports.sliceAt = function( fruit, angle ){
