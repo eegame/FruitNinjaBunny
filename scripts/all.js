@@ -529,7 +529,7 @@ define("scripts/message.js", function( exports ){
    * @param {Any}    messages  message contents
    * @param {String} to        message address
    */
-  exports.postMessage = function( message/*, message, message... */, to ){
+  exports.postMessage = function( message/*,message, message...*/, to ){
     var messages = [].slice.call( arguments, 0 ),
         splitIndex = messages.length - 1;
 
@@ -604,7 +604,7 @@ define("scripts/scene.js", function( exports ){
   exports.init = function(){
     openSnd = sound.create( "sound/open" );
     startSnd = sound.create( "sound/start" );
-    [ background, homeMask, logo, ninja, homeDesc, newGame, quit, score, lose, developing, gameOver, flash /*, fps */ ].invoke( "set" );
+    [ background, homeMask, logo, ninja, homeDesc, newGame, quit, score, lose, developing, gameOver, flash/*, fps*/ ].invoke( "set" );
     //setInterval( fps.update.bind( fps ), 500 );
   };
 
@@ -1411,8 +1411,8 @@ define("scripts/factory/fruit.js", function( exports ){
     if( this.hasOwnProperty( "bImage2" ) && this.bImage2 )
       this.bImage2.remove();
 
-		if( this.hasOwnProperty( "flame" ) && this.flame )
-		  this.flame.remove();
+    if( this.hasOwnProperty( "flame" ) && this.flame )
+      this.flame.remove();
 
     if( ( index = fruitCache.indexOf( this ) ) > -1 )
       fruitCache.splice( index, 1 );
@@ -2783,7 +2783,7 @@ define("scripts/lib/ucren.js", function( exports ){
     };
 
   // Function.prototype.saturate
-  Function.prototype.saturate = function( scope/*, args */ ){
+  Function.prototype.saturate = function( scope/*, args*/ ){
     var fn = this, afters = slice.call( arguments, 1 );
     return function(){
       return fn.apply( scope, slice.call( arguments, 0 ).concat( afters ) );
@@ -2792,81 +2792,86 @@ define("scripts/lib/ucren.js", function( exports ){
 
   // Array.prototype.indexOf
   // if( !Array.prototype.indexOf )
-    Array.prototype.indexOf = function( item, i ){
-      var length = this.length;
+  Array.prototype.indexOf = function( item, i ){
+    var length = this.length;
 
-      if( !i )
-          i = 0;
+    if( !i )
+      i = 0;
+    else if( i < 0 )
+      i = length + i;
 
-      if( i < 0 )
-        i = length + i;
-      for( ; i < length; i++ )
-        if( this[i] === item )
-          return i;
-      return -1;
-    };
+    for( ; i < length; i++ )
+      if( this[i] === item )
+        return i;
+    return -1;
+  };
 
   // Array.prototype.every
   // if( !Array.prototype.every )
-    Array.prototype.every = function( fn, context ) {
-      for ( var i = 0, len = this.length; i < len; i++ )
-        if ( !fn.call( context, this[i], i, this ) )
-          return false;
-      return true;
-    };
+  Array.prototype.every = function( fn, context ) {
+    for( var i = 0, len = this.length; i < len; i++ )
+      if( !fn.call( context, this[i], i, this ) )
+        return false;
+    return true;
+  };
 
   // Array.prototype.filter
   // if( !Array.prototype.filter )
-    Array.prototype.filter = function( fn, context ) {
-      var result = [], val;
-      for ( var i = 0, len = this.length; i < len; i++ )
-        if ( val = this[i], fn.call( context, val, i, this ) )
-          result.push( val );
-      return result;
-    };
+  Array.prototype.filter = function( fn, context ) {
+    var result = [], val;
+
+    for( var i = 0, len = this.length; i < len; i++ )
+      if( val = this[i], fn.call( context, val, i, this ) )
+        result.push( val );
+    return result;
+  };
 
   // Array.prototype.forEach
   // if( !Array.prototype.forEach )
-    Array.prototype.forEach = function( fn, context ) {
-      for ( var i = 0, len = this.length; i < len; i++ )
-        fn.call( context, this[i], i, this );
-    };
+  Array.prototype.forEach = function( fn, context ) {
+    for( var i = 0, len = this.length; i < len; i++ )
+      fn.call( context, this[i], i, this );
+  };
 
   // Array.prototype.map
   // if( !Array.prototype.map )
-    Array.prototype.map = function( fn, context ) {
-      var result = [];
-      for ( var i = 0, len = this.length; i < len; i++ )
-        result[i] = fn.call( context, this[i], i, this );
-      return result;
-    };
+  Array.prototype.map = function( fn, context ) {
+    var result = [];
+
+    for( var i = 0, len = this.length; i < len; i++ )
+      result[i] = fn.call( context, this[i], i, this );
+    return result;
+  };
 
   // Array.prototype.some
   // if( !Array.prototype.some )
-    Array.prototype.some = function( fn, context ) {
-      for ( var i = 0, len = this.length; i < len; i++ )
-        if ( fn.call( context, this[i], i, this ) )
-          return true;
-      return false;
-    };
+  Array.prototype.some = function( fn, context ) {
+    for( var i = 0, len = this.length; i < len; i++ )
+      if( fn.call( context, this[i], i, this ) )
+        return true;
+    return false;
+  };
 
-    Array.prototype.invoke = function( method /*, args */ ){
-      var args = slice.call( arguments, 1 );
-      this.forEach( function( item ){
-        if( item instanceof Array )
-          item[0][method].apply( item[0], item.slice( 1 ) );
-        else
-          item[method].apply( item, args );
-      });
-      return this;
-    };
+  Array.prototype.invoke = function( method/*, args*/ ){
+    var args = slice.call( arguments, 1 );
 
-    Array.prototype.random = function(){
-      var arr = this.slice( 0 ), ret = [], i = arr.length;
-      while( i-- )
-        ret.push( arr.splice( ucren.randomNumber( i + 1 ), 1 )[0] );
-      return ret;
-    };
+    this.forEach( function( item ){
+      if( item instanceof Array )
+        item[0][method].apply( item[0], item.slice( 1 ) );
+      else
+        item[method].apply( item, args );
+    });
+
+    return this;
+  };
+
+  Array.prototype.random = function(){
+    var ret = [], arr = this.slice( 0 ), i = arr.length;
+
+    while( i-- )
+      ret.push( arr.splice( ucren.randomNumber( i + 1 ), 1 )[0] );
+    return ret;
+  };
 
   ucren = {
     //
@@ -3147,7 +3152,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
     // ucren.each (not recommended)
     each: function( unknown, fn ){
-      /// unknown是array的，会慢慢退化，建议用Array.prototype.forEach替代
+      /// unknown为Array的，会慢慢退化，建议用Array.prototype.forEach替代
       /// unknown为其它类似的，短期内将暂时支持
       if( unknown instanceof Array || ( typeof unknown == "object" &&
         typeof unknown[0] != "undefined" && unknown.length )){
