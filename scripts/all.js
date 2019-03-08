@@ -26,8 +26,8 @@ void function(global){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\collide.js
  */
 define("scripts/collide.js", function(exports){
-  var fruit = require("scripts/factory/fruit");
   var ucren = require("scripts/lib/ucren");
+  var fruit = require("scripts/factory/fruit");
 
   var fruits = fruit.getFruitInView();
 
@@ -4836,13 +4836,13 @@ define("scripts/object/quit.js", function( exports ){
  */
 define("scripts/object/score.js", function( exports ){
   var layer = require("scripts/layer");
-  var tween = require("scripts/lib/tween");
   var timeline = require("scripts/timeline");
+  var message = require("scripts/message");
+  var tween = require("scripts/lib/tween");
   var ucren = require("scripts/lib/ucren");
 
   var setTimeout = timeline.setTimeout.bind( timeline );
   var anim = tween.exponential.co;
-  var message = require("scripts/message");
 
   /**
    * 分数模块
