@@ -2696,8 +2696,7 @@ define("scripts/lib/ucren.js", function( exports ){
    * filename: boot.js
    * version: 5.0.2.20120628
    */
-  var ucren, blankArray = [];
-  var slice = blankArray.slice, join = blankArray.join;
+  var ucren, blankArray = [], join = blankArray.join, slice = blankArray.slice;
 
   //
   // [基本数据类型扩展]
