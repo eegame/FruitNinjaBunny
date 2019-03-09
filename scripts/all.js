@@ -1089,7 +1089,7 @@ define("scripts/tools.js", function( exports ){
         return pi * 0.5;
       return pi * 1.5
     }
-	else if( point[1] === origin[1] ){
+    else if( point[1] === origin[1] ){
       if( point[0] > origin[0] )
         return 0;
       return pi;
