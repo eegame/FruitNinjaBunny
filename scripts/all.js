@@ -241,10 +241,10 @@ define("scripts/game.js", function( exports ){
     state( "game-state" ).set( "over" );
     gameInterval.stop();
 
+    fruits.length = 0;
     scoreNum = 0;
     volleyNum = 2;
     volleyMultipleNum = 5;
-    fruits.length = 0;
 
     endSnd = sound.create( "sound/end" );
     endSnd.play();
