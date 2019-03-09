@@ -1072,8 +1072,8 @@ define("scripts/timeline.js", function( exports ){
  */
 define("scripts/tools.js", function( exports ){
   exports.unsetObject = function( object ){
-    for(var i in object)
-      if(object.hasOwnProperty(i) && typeof object[i] == "function")
+    for( var i in object )
+      if( object.hasOwnProperty( i ) && typeof object[i] == "function" )
         object[i] = function(){};
   };
 
@@ -1085,11 +1085,12 @@ define("scripts/tools.js", function( exports ){
     var PI = Math.PI;
 
     if( point[0] === origin[0] ){
-      if ( point[1] > origin[1] )
+      if( point[1] > origin[1] )
         return PI * 0.5;
       return PI * 1.5
-    }else if( point[1] === origin[1] ){
-      if ( point[0] > origin[0] )
+    }
+	else if( point[1] === origin[1] ){
+      if( point[0] > origin[0] )
         return 0;
       return PI;
     }
@@ -1097,7 +1098,7 @@ define("scripts/tools.js", function( exports ){
     var t = Math.atan( ( origin[1] - point[1] ) / ( origin[0] - point[0] ) );
 
     if( point[0] > origin[0] && point[1] < origin[1] )
-      return t + 2 * PI;
+      return t + PI * 2;
 
     if( point[0] > origin[0] && point[1] > origin[1] )
       return t;
@@ -2322,7 +2323,7 @@ define("scripts/lib/buzz.js", function( exports ){
         // init
         if ( supported && src ) {
           for ( var i in buzz.defaults ) {
-            if (buzz.defaults.hasOwnProperty(i)) {
+            if ( buzz.defaults.hasOwnProperty( i ) ) {
               options[ i ] = options[ i ] || buzz.defaults[ i ];
             }
           }
@@ -2331,14 +2332,14 @@ define("scripts/lib/buzz.js", function( exports ){
 
           if ( src instanceof Array ) {
             for ( var j in src ) {
-              if (src.hasOwnProperty(j)) {
+              if ( src.hasOwnProperty( j ) ) {
                 addSource( this.sound, src[ j ] );
               }
             }
           }
           else if ( options.formats.length ) {
             for ( var k in options.formats ) {
-              if (options.formats.hasOwnProperty(k)) {
+              if ( options.formats.hasOwnProperty( k ) ) {
                 addSource( this.sound, src + '.' + options.formats[ k ] );
               }
             }
