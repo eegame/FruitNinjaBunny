@@ -440,7 +440,7 @@ define("scripts/main.js", function( exports ){
   var setTimeout = timeline.setTimeout.bind( timeline );
 
   var log = function(){
-    var time = 1e3, add = 300, fn;
+    var fn, time = 1e3, add = 300;
 
     fn = function( text ){
       setTimeout( function(){ csl.log( text ); }, time );
@@ -2723,7 +2723,7 @@ define("scripts/lib/ucren.js", function( exports ){
     var div = document.createElement( "div" );
     return function(){
       var text;
-      div.appendChild( document.createTextNode( this ));
+      div.appendChild( document.createTextNode( this ) );
       text = div.innerHTML;
       div.innerHTML = "";
       return text;
@@ -2924,7 +2924,7 @@ define("scripts/lib/ucren.js", function( exports ){
         style = document.createElement( "style" );
         style.type = "text/css";
         //style.innerHTML = text; // fix Chrome bug
-        style.appendChild( document.createTextNode( text ));
+        style.appendChild( document.createTextNode( text ) );
         document.getElementsByTagName( "head" )[0].appendChild( style );
       }
     },
@@ -2977,11 +2977,10 @@ define("scripts/lib/ucren.js", function( exports ){
 
     // ucren.Class
     Class: function( initialize, methods, befores, afters ){
-      var fn, prototype, blank;
+      var fn, prototype, blank = {};
 
       initialize = initialize || function(){};
       methods = methods || {};
-      blank = {};
 
       fn = function(){
         this.instanceId = ucren.id();
@@ -2998,7 +2997,7 @@ define("scripts/lib/ucren.js", function( exports ){
               var rtn, args = slice.call( arguments, 0 );
 
               if( befores &&
-                befores.apply( this, [name].concat( args )) === false ){
+                befores.apply( this, [name].concat( args ) ) === false ){
                 return;
               }
 
@@ -3006,7 +3005,7 @@ define("scripts/lib/ucren.js", function( exports ){
               rtn = method.apply( this, args );
 
               if( afters )
-                afters.apply( this, [name].concat( args ));
+                afters.apply( this, [name].concat( args ) );
 
               this.fireEvent( name, args );
               return rtn;
@@ -3029,12 +3028,12 @@ define("scripts/lib/ucren.js", function( exports ){
     registerClassEvent: function(){
       this.on = function( name, fn ){
         var instanceId = this.instanceId;
-        ucren.dispatch( instanceId + name, fn.bind( this ));
+        ucren.dispatch( instanceId + name, fn.bind( this ) );
       };
 
       this.onbefore = function( name, fn ){
         var instanceId = this.instanceId;
-        ucren.dispatch( instanceId + "before" + name, fn.bind( this ));
+        ucren.dispatch( instanceId + "before" + name, fn.bind( this ) );
       };
 
       this.un = function( name, fn ){
@@ -3138,7 +3137,7 @@ define("scripts/lib/ucren.js", function( exports ){
       /// unknown为Array的，会慢慢退化，建议用Array.prototype.forEach替代
       /// unknown为其它类似的，短期内将暂时支持
       if( unknown instanceof Array || ( typeof unknown == "object" &&
-        typeof unknown[0] != "undefined" && unknown.length )){
+        typeof unknown[0] != "undefined" && unknown.length ) ){
         if( typeof unknown == "object" && ucren.isSafari )
           unknown = slice.call( unknown );
           //for( var i = 0, l = unknown.length; i < l; i++ ){
@@ -3357,7 +3356,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
         ucren.each( length, function( index ){
           re[index] = words.charAt( this.randomNumber( words.length ) );
-        }.bind( this ));
+        }.bind( this ) );
 
         return re.join( "" );
       }
@@ -3514,12 +3513,12 @@ define("scripts/lib/ucren.js", function( exports ){
             draging.newMouseY = coors[1];
             e.stopPropagation && e.stopPropagation();
             return e.returnValue = false;
-          }.bind( this ));
+          }.bind( this ) );
 
         draging.documentMouseUp =
           ucren.addEvent( document, this.TOUCH_END, function(){
             this.endDrag();
-          }.bind( this ));
+          }.bind( this ) );
 
         var lx, ly;
         clearInterval( draging.timer );
@@ -3610,7 +3609,7 @@ define("scripts/lib/ucren.js", function( exports ){
           if( typeof unknown1 == "object" ){
             ucren.each( unknown1, function( value, key ){
               this[key] = value;
-            }.bind( this.dom.style ));
+            }.bind( this.dom.style ) );
           }
           else if( typeof unknown1 == "string" && typeof unknown2 == "undefined" ){
             return getStyle.call( this, unknown1 );
@@ -3913,7 +3912,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
       observe: function( el, fn ){
         el = ucren.Element( el );
-        el.on( "infect", fn.bind( this ));
+        el.on( "infect", fn.bind( this ) );
         return this;
       },
 
@@ -3949,7 +3948,7 @@ define("scripts/lib/ucren.js", function( exports ){
               es.zoom = 1;
             }
 
-            if( reOpacity.test( es.filter )){
+            if( reOpacity.test( es.filter ) ){
               value = value >= 99.99 ? "" : ( "alpha( opacity=" + value + " )" );
               es.filter = es.filter.replace( reOpacity, value );
             }
@@ -4207,11 +4206,11 @@ define("scripts/object/flame.js", function( exports ){
     var ia = item.angle,
         ic = item.center,
         il = item.length;
-    center = [ trunc(ic[0] + cos(ia) * il * (1 - age)), trunc(ic[1] + sin(ia) * il * (1 - age)) ];
-    p1 = [ trunc(center[0] - cos(ia) * radius * age), trunc(center[1] - sin(ia) * radius * age) ];
-    p2 = [ trunc(center[0] + cos(ia) * radius * age), trunc(center[1] + sin(ia) * radius * age) ];
-    p3 = [ trunc(center[0] - cos(ia + .5 * pi) * radius * .4 * age), trunc(center[1] - sin(ia + .5 * pi) * radius * .4 * age) ];
-    p4 = [ trunc(center[0] - cos(ia - .5 * pi) * radius * .4 * age), trunc(center[1] - sin(ia - .5 * pi) * radius * .4 * age) ];
+    center = [trunc(ic[0] + cos(ia) * il * (1 - age)), trunc(ic[1] + sin(ia) * il * (1 - age))];
+    p1 = [trunc(center[0] - cos(ia) * radius * age), trunc(center[1] - sin(ia) * radius * age)];
+    p2 = [trunc(center[0] + cos(ia) * radius * age), trunc(center[1] + sin(ia) * radius * age)];
+    p3 = [trunc(center[0] - cos(ia + .5 * pi) * radius * .4 * age), trunc(center[1] - sin(ia + .5 * pi) * radius * .4 * age)];
+    p4 = [trunc(center[0] - cos(ia - .5 * pi) * radius * .4 * age), trunc(center[1] - sin(ia - .5 * pi) * radius * .4 * age)];
 
     item.path.attr({ path: 'M' + p1 + ' Q' + [ p3, p2, p4, p1 ].join(' ') });
   };
