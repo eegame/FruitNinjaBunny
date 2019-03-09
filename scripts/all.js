@@ -1082,28 +1082,28 @@ define("scripts/tools.js", function( exports ){
   }
 
   exports.pointToRadian =  function( origin, point ){
-    var PI = Math.PI;
+    var pi = Math.PI;
 
     if( point[0] === origin[0] ){
       if( point[1] > origin[1] )
-        return PI * 0.5;
-      return PI * 1.5
+        return pi * 0.5;
+      return pi * 1.5
     }
 	else if( point[1] === origin[1] ){
       if( point[0] > origin[0] )
         return 0;
-      return PI;
+      return pi;
     }
 
     var t = Math.atan( ( origin[1] - point[1] ) / ( origin[0] - point[0] ) );
 
     if( point[0] > origin[0] && point[1] < origin[1] )
-      return t + PI * 2;
+      return t + pi * 2;
 
     if( point[0] > origin[0] && point[1] > origin[1] )
       return t;
 
-    return t + PI;
+    return t + pi;
   };
 
   return exports;
