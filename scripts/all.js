@@ -73,7 +73,7 @@ define("scripts/collide.js", function(exports){
 
   // 返回线段和椭圆的两个交点，如果不相交，返回null
   function lineXEllipse(p1, p2, c, r, e){
-    // 线段: p1, p2; 圆心: c; 半径: r;离心率: e
+    // 线段: p1, p2; 圆心: c; 半径: r; 离心率: e
     if(r <= 0) return;
 
     e = e === undefined ? 1 : e;
@@ -4011,9 +4011,9 @@ define("scripts/lib/ucren.js", function( exports ){
 
       useMouseAction: function( className, actions ){
         /**
-         * 调用示例：el.useMouseAction( "xbutton", "over,out,down,up" );
-         * 使用效果：el会在"xbutton xbutton-over", "xbutton xbutton-out", "xbutton xbutton-down", "xbutton xbutton-up"四个className中根据相应的鼠标事件进行切换。
-         * 特别提示：useMouseAction可使用不同参数多次调用。
+         * 调用示例: el.useMouseAction( "xbutton", "over,out,down,up" );
+         * 使用效果: el会在"xbutton xbutton-over", "xbutton xbutton-out", "xbutton xbutton-down", "xbutton xbutton-up"四个className中根据相应的鼠标事件进行切换
+         * 特别提示: useMouseAction可使用不同参数多次调用
          */
         if( !this.MouseAction )
           this.MouseAction = new ucren.MouseAction({ element: this });
