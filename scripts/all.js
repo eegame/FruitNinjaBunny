@@ -4146,6 +4146,61 @@ define("scripts/object/developing.js", function( exports ){
 });
 
 /**
+ * @source D:\hosting\demos\fruit-ninja\output\scripts\object\game-over.js
+ */
+define("scripts/object/game-over.js", function( exports ){
+  /**
+   * "game over"模块
+   */
+  var layer = require("scripts/layer");
+  var message = require("scripts/message");
+  var state = require("scripts/state");
+  var timeline = require("scripts/timeline");
+  var tween = require("scripts/lib/tween");
+
+  var exponential = tween.exponential.co;
+
+  exports.anims = [];
+
+  exports.set = function(){
+    this.image = layer.createImage( "default", "images/game-over.png", 32, 98, 255, 85 ).hide().scale( 1e-5, 1e-5 );
+  };
+
+  exports.show = function( start ){
+    timeline.createTask({
+      start: start, duration: 500, data: [ 1e-5, 1, "show" ],
+      object: this, onTimeUpdate: this.onZooming, onTimeStart: this.onZoomStart, onTimeEnd: this.onZoomEnd,
+      recycle: this.anims
+    });
+  };
+
+  exports.hide = function( start ){
+    timeline.createTask({
+      start: start, duration: 500, data: [ 1, 1e-5, "hide" ],
+      object: this, onTimeUpdate: this.onZooming, onTimeStart: this.onZoomStart, onTimeEnd: this.onZoomEnd,
+      recycle: this.anims
+    });
+  };
+
+  // 显示/隐藏相关
+  exports.onZoomStart = function( sz, ez, mode ){
+    if( mode === "show" )
+      this.image.show();
+  };
+
+  exports.onZooming = function( time, sz, ez, z ){
+    this.image.scale( z = exponential( time, sz, ez - sz, 500 ), z );
+  };
+
+  exports.onZoomEnd = function( sz, ez, mode ){
+    if( mode === "hide" )
+      this.image.hide();
+  };
+
+  return exports;
+});
+
+/**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\flame.js
  */
 define("scripts/object/flame.js", function( exports ){
@@ -4331,61 +4386,6 @@ define("scripts/object/fps.js", function( exports ){
   return exports;
 });
 */
-
-/**
- * @source D:\hosting\demos\fruit-ninja\output\scripts\object\game-over.js
- */
-define("scripts/object/game-over.js", function( exports ){
-  /**
-   * "game over"模块
-   */
-  var layer = require("scripts/layer");
-  var message = require("scripts/message");
-  var state = require("scripts/state");
-  var timeline = require("scripts/timeline");
-  var tween = require("scripts/lib/tween");
-
-  var exponential = tween.exponential.co;
-
-  exports.anims = [];
-
-  exports.set = function(){
-    this.image = layer.createImage( "default", "images/game-over.png", 32, 98, 255, 85 ).hide().scale( 1e-5, 1e-5 );
-  };
-
-  exports.show = function( start ){
-    timeline.createTask({
-      start: start, duration: 500, data: [ 1e-5, 1, "show" ],
-      object: this, onTimeUpdate: this.onZooming, onTimeStart: this.onZoomStart, onTimeEnd: this.onZoomEnd,
-      recycle: this.anims
-    });
-  };
-
-  exports.hide = function( start ){
-    timeline.createTask({
-      start: start, duration: 500, data: [ 1, 1e-5, "hide" ],
-      object: this, onTimeUpdate: this.onZooming, onTimeStart: this.onZoomStart, onTimeEnd: this.onZoomEnd,
-      recycle: this.anims
-    });
-  };
-
-  // 显示/隐藏相关
-  exports.onZoomStart = function( sz, ez, mode ){
-    if( mode === "show" )
-      this.image.show();
-  };
-
-  exports.onZooming = function( time, sz, ez, z ){
-    this.image.scale( z = exponential( time, sz, ez - sz, 500 ), z );
-  };
-
-  exports.onZoomEnd = function( sz, ez, mode ){
-    if( mode === "hide" )
-      this.image.hide();
-  };
-
-  return exports;
-});
 
 /**
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\home-desc.js
