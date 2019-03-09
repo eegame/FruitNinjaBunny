@@ -277,7 +277,7 @@ define("scripts/game.js", function( exports ){
     if( state( "game-state" ).isnot( "playing" ) )
       return;
 
-    if( fruit.type != "boom" ){
+    if( fruit.type !== "boom" ){
       var index;
       fruit.broken( angle );
 
@@ -320,7 +320,7 @@ define("scripts/game.js", function( exports ){
   });
 
   var eventFruitFallOutOfViewer = function( fruit ){
-    if( fruit.type != "boom" )
+    if( fruit.type !== "boom" )
       lose.showLoseAt( fruit.originX );
   };
 
@@ -1359,7 +1359,7 @@ define("scripts/factory/fruit.js", function( exports ){
         recycle: this.anims
       });
 
-      if( this.type != "boom" )
+      if( this.type !== "boom" )
         this.rotate( 0, ( random( 180 ) + 90 ) * sign[ random( 2 ) ] );
 
       return this;
