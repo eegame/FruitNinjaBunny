@@ -577,12 +577,12 @@ define("scripts/scene.js", function( exports ){
   //var fps = require("scripts/object/fps");
 
   // home menu elements
-  var homeMask = require("scripts/object/home-mask");
-  var logo = require("scripts/object/logo");
-  var ninja = require("scripts/object/ninja")
   var homeDesc = require("scripts/object/home-desc");
+  var homeMask = require("scripts/object/home-mask");
   var newGame = require("scripts/object/new-game");
   var quit = require("scripts/object/quit");
+  var logo = require("scripts/object/logo");
+  var ninja = require("scripts/object/ninja");
   var sandia, boom, bunny;
 
   // elements in game body
@@ -4346,6 +4346,7 @@ define("scripts/object/flash.js", function( exports ){
 define("scripts/object/fps.js", function( exports ){
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline");
+
   var text, fps = "FPS: ";
 
   exports.set = function(){
@@ -4419,8 +4420,8 @@ define("scripts/object/game-over.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\home-desc.js
  */
 define("scripts/object/home-desc.js", function( exports ){
-  var displacement = require("scripts/factory/displacement");
   var tween = require("scripts/lib/tween");
+  var displacement = require("scripts/factory/displacement");
 
   exports = displacement.create("images/home-desc.png", 146, 90, -146, 146, 4, 134, tween.exponential.co, 500);
   return exports;
@@ -4430,8 +4431,8 @@ define("scripts/object/home-desc.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\home-mask.js
  */
 define("scripts/object/home-mask.js", function( exports ){
-  var displacement = require("scripts/factory/displacement");
   var tween = require("scripts/lib/tween");
+  var displacement = require("scripts/factory/displacement");
 
   exports = displacement.create("images/home-mask.png", 320, 180, 0, -180, 0, 0, tween.exponential.co, 1e3);
   return exports;
@@ -4633,8 +4634,8 @@ define("scripts/object/light.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\logo.js
  */
 define("scripts/object/logo.js", function( exports ){
-  var displacement = require("scripts/factory/displacement");
   var tween = require("scripts/lib/tween");
+  var displacement = require("scripts/factory/displacement");
 
   exports = displacement.create("images/logo.png", 144, 132, 16, -180, 16, 4, tween.exponential.co, 1e3);
   return exports;
@@ -4786,14 +4787,13 @@ define("scripts/object/lose.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\ninja.js
  */
 define("scripts/object/ninja.js", function( exports ){
-  var displacement = require("scripts/factory/displacement");
   var tween = require("scripts/lib/tween");
+  var displacement = require("scripts/factory/displacement");
 
   exports = displacement.create("images/ninja.png", 122, 78, 170, -140, 170, 40, {
     show: tween.bounce.co,
     hide: tween.exponential.co
   }, 1e3);
-
   return exports;
 });
 
@@ -4801,11 +4801,10 @@ define("scripts/object/ninja.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\new-game.js
  */
 define("scripts/object/new-game.js", function( exports ){
-  var rotate = require("scripts/factory/rotate");
   var tween = require("scripts/lib/tween");
+  var rotate = require("scripts/factory/rotate");
 
   exports = rotate.create("images/new-game.png", 140, 140, 175, 175, 1e-5, tween.exponential.co, 500);
-
   return exports;
 });
 
@@ -4813,11 +4812,10 @@ define("scripts/object/new-game.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\quit.js
  */
 define("scripts/object/quit.js", function( exports ){
-  var rotate = require("scripts/factory/rotate");
   var tween = require("scripts/lib/tween");
+  var rotate = require("scripts/factory/rotate");
 
   exports = rotate.create("images/quit.png", 174, 334, 141, 141, 1e-5, tween.exponential.co, 500);
-
   return exports;
 });
 
