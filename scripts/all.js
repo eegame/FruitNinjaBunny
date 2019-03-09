@@ -627,7 +627,7 @@ define("scripts/scene.js", function( exports ){
     var onShow = function(){
       sceneState.set( "ready" );
 
-      if( name == "quit-body" ) {
+      if( name == "quit-body" ){
         firstGame = true;
         lastBoom = 0;
         exports.switchScene( "home-menu" );
