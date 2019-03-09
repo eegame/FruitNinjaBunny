@@ -1193,17 +1193,15 @@ define("scripts/factory/fruit.js", function( exports ){
   var flame = require("scripts/object/flame");
   var flash = require("scripts/object/flash");
 
-  var ie = ucren.isIe, safari = ucren.isSafari;
   var zoomAnim = tween.exponential.co;
+  var fallOffAnim = tween.quadratic.co;
+  var dropAnim = tween.quadratic.ci;
   var rotateAnim = tween.circular;
   var linearAnim = tween.linear;
-  var dropAnim = tween.quadratic.ci;
-  var fallOffAnim = tween.quadratic.co;
 
-  var random = ucren.randomNumber;
-  var min = Math.min;
+  var ie = ucren.isIe, safari = ucren.isSafari, random = ucren.randomNumber;
   var dropTime = 1200, dropXScope = 200, shadowPos = 50;
-  var average = function( a, b ){ return ( ( a + b ) / 2 ) >> 0; };
+  var min = Math.min, average = function( a, b ){ return ( ( a + b ) / 2 ) >> 0; };
 
   var infos = {
     // type: [ imageSrc, width, height, radius, fixAngle, isReverse, juiceColor ]
@@ -2682,8 +2680,8 @@ define("scripts/lib/tween.js", function( exports ){
   exports.bounce.co = function(index, offset, target, framesNum){ if((index /= framesNum) < (1 / 2.75)) return target * (7.5625 * index * index) + offset; else if(index < (2 / 2.75)) return target * (7.5625 * (index -= (1.5 / 2.75)) * index + .75) + offset; else if(index < (2.5 / 2.75)) return target * (7.5625 * (index -= (2.25 / 2.75)) * index + .9375) + offset; else return target * (7.5625 * (index -= (2.625 / 2.75)) * index + .984375) + offset; };
 
   exports.quadratic = function(){};
-  exports.quadratic.ci = function(index, offset, target, framesNum){ return target * (index /= framesNum) * index + offset; };
   exports.quadratic.co = function(index, offset, target, framesNum){ return - target * (index /= framesNum) * (index - 2) + offset; }
+  exports.quadratic.ci = function(index, offset, target, framesNum){ return target * (index /= framesNum) * index + offset; };
   exports.quadratic.cio = function(index, offset, target, framesNum){ if((index /= framesNum / 2) < 1) return target / 2 * index * index + offset; else return - target / 2 * ((--index) * (index - 2) - 1) + offset; };
 
   exports.circular = function(index, offset, target, framesNum){ if((index /= framesNum / 2) < 1) return - target / 2 * (Math.sqrt(1 - index * index) - 1) + offset; else return target / 2 * (Math.sqrt(1 - (index -= 2) * index) + 1) + offset; }
@@ -2691,8 +2689,8 @@ define("scripts/lib/tween.js", function( exports ){
   exports.linear = function(index, offset, target, framesNum){ return target * index / framesNum + offset; };
 
   exports.back = function(){};
-  exports.back.ci = function(index, offset, target, framesNum, s){ s = 1.70158; return target * (index /= framesNum) * index * ((s + 1) * index - s) + offset; };
   exports.back.co = function(index, offset, target, framesNum, s){ s = 1.70158; return target * ((index = index / framesNum - 1) * index * ((s + 1) * index + s) + 1) + offset; };
+  exports.back.ci = function(index, offset, target, framesNum, s){ s = 1.70158; return target * (index /= framesNum) * index * ((s + 1) * index - s) + offset; };
 
   return exports;
 });
