@@ -1112,10 +1112,7 @@ define("scripts/factory/displacement.js", function( exports ){
   var tween = require("scripts/lib/tween");
 
   exports.create = function( imageSrc, width, height, origX, origY, targetX, targetY, animMap, animDur ){
-    var module = {};
-    var image;
-
-    var anim = {};
+    var image, anim = {}, module = {};
 
     if( typeof animMap == "function" )
         anim.show = anim.hide = animMap;
