@@ -392,7 +392,7 @@ define("scripts/layer.js", function( exports ){
     return layer.text(x, y, text).attr({
       fill: fill || "#fff",
       "font-size": size || "14px",
-      "font-family": "黑体",
+      "font-family": "monospace",
       "text-anchor": "start"
     });
   };
@@ -4196,8 +4196,7 @@ define("scripts/object/flame.js", function( exports ){
     if( !item )
       return;
 
-    var age = 1 - (new Date - item.birthday) / item.life,
-        center, p1, p2, p3, p4;
+    var age = 1 - (new Date - item.birthday) / item.life;
     if( age <= 0 ){
       if( item.hasOwnProperty( "path" ) && item.path )
         item.path.remove();
@@ -4207,13 +4206,12 @@ define("scripts/object/flame.js", function( exports ){
 
     var ia = item.angle,
         ic = item.center,
-        il = item.length;
-    center = [trunc(ic[0] + cos(ia) * il * (1 - age)), trunc(ic[1] + sin(ia) * il * (1 - age))];
-    p1 = [trunc(center[0] - cos(ia) * radius * age), trunc(center[1] - sin(ia) * radius * age)];
-    p2 = [trunc(center[0] + cos(ia) * radius * age), trunc(center[1] + sin(ia) * radius * age)];
-    p3 = [trunc(center[0] - cos(ia + .5 * pi) * radius * .4 * age), trunc(center[1] - sin(ia + .5 * pi) * radius * .4 * age)];
-    p4 = [trunc(center[0] - cos(ia - .5 * pi) * radius * .4 * age), trunc(center[1] - sin(ia - .5 * pi) * radius * .4 * age)];
-
+        il = item.length,
+        center = [trunc(ic[0] + cos(ia) * il * (1 - age)), trunc(ic[1] + sin(ia) * il * (1 - age))],
+        p1 = [trunc(center[0] - cos(ia) * radius * age), trunc(center[1] - sin(ia) * radius * age)],
+        p2 = [trunc(center[0] + cos(ia) * radius * age), trunc(center[1] + sin(ia) * radius * age)],
+        p3 = [trunc(center[0] - cos(ia + .5 * pi) * radius * .4 * age), trunc(center[1] - sin(ia + .5 * pi) * radius * .4 * age)],
+        p4 = [trunc(center[0] - cos(ia - .5 * pi) * radius * .4 * age), trunc(center[1] - sin(ia - .5 * pi) * radius * .4 * age)];
     item.path.attr({ path: 'M' + p1 + ' Q' + [ p3, p2, p4, p1 ].join(' ') });
   };
 
