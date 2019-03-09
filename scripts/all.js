@@ -968,7 +968,7 @@ define("scripts/timeline.js", function( exports ){
   };
 
   ClassTimer.prototype.update = function( time ){
-    var tasks = this.tasks, addingTasks = this.addingTasks, adding = this.adding;
+    var tasks = this.tasks, adding = this.adding, addingTasks = this.addingTasks;
     var i = tasks.length, t, task, start, duration, data;
 
     while( i-- ){
@@ -1002,10 +1002,8 @@ define("scripts/timeline.js", function( exports ){
 
   timeline.use = function( name ){
     var module = timerCache[ name ];
-
     if( !module )
       module = timerCache[ name ] = new ClassTimer;
-
     return module;
   };
 
