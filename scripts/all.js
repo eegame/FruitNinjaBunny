@@ -497,7 +497,7 @@ define("scripts/main.js", function( exports ){
           case fruit.isNewGameIcon:
             scene.switchScene( "game-body" ); break;
           case fruit.isQuitIcon:
-            scene.switchScene( "quit-body" ); break;
+            scene.switchScene( "quit-body" );
         }
       }
     }
@@ -620,7 +620,7 @@ define("scripts/scene.js", function( exports ){
       switch( name ){
         case "home-menu": this.showMenu( onShow ); break;
         case "game-body": this.showNewGame( onShow ); break;
-        case "quit-body": this.showQuit( onShow ); break;
+        case "quit-body": this.showQuit( onShow );
       }
     }.bind( this );
 
