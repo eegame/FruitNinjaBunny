@@ -1148,10 +1148,10 @@ define("scripts/factory/displacement.js", function( exports ){
     };
 
     module.onTimeUpdate = function( time, sx, sy, ex, ey, anim ){
-      image.attr( {
+      image.attr({
         x: anim( time, sx, ex - sx, animDur ),
         y: anim( time, sy, ey - sy, animDur )
-      } );
+      });
     };
 
     module.onTimeStart = function(){
@@ -4057,12 +4057,12 @@ define("scripts/object/background.js", function( exports ){
 
   exports.stop = function(){
     time.stop();
-    image.attr( { x: 0, y: 0 } );
+    image.attr({ x: 0, y: 0 });
   };
 
   function wobble(){
     var x = random( 12 ) - 6, y = random( 12 ) - 6;
-    image.attr( { x: x, y: y } );
+    image.attr({ x: x, y: y });
   };
 
   return exports;
@@ -4185,7 +4185,7 @@ define("scripts/object/flame.js", function( exports ){
       angle: angle,
       length: length,
       life: life,
-      path: layer.path().attr( { stroke: 'none', fill: trunc(angle * 180 / pi) + '-#fafad9-#f0ef9c' } )
+      path: layer.path().attr({ stroke: 'none', fill: trunc(angle * 180 / pi) + '-#fafad9-#f0ef9c' })
     };
   }
 
@@ -4558,7 +4558,7 @@ define("scripts/object/light.js", function( exports ){
     this.removeLights();
 
     var dur = 3e3;
-    var mask = maskLayer.rect( 0, 0, 320, 480 ).attr( { fill: "#fff", stroke: "none" } );
+    var mask = maskLayer.rect( 0, 0, 320, 480 ).attr({ fill: "#fff", stroke: "none" });
     var control = {
       onTimeUpdate: function( time ){
         mask.attr( "opacity", 1 - time / dur );
