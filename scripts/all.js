@@ -3435,7 +3435,6 @@ define("scripts/lib/ucren.js", function( exports ){
       this.type = ucren.fixString( conf.type, "normal" );
 
       var isTouch = this.isTouch = "ontouchstart" in window;
-
       this.TOUCH_START = isTouch ? "touchstart" : "mousedown",
       this.TOUCH_MOVE = isTouch ? "touchmove" : "mousemove",
       this.TOUCH_END = isTouch ? "touchend" : "mouseup";
@@ -3448,7 +3447,6 @@ define("scripts/lib/ucren.js", function( exports ){
         handle = ucren.Element( handle ) || el;
 
         var evt = {};
-
         evt[this.TOUCH_START] = function( e ){
           e = ucren.Event( e );
           this.startDrag();
@@ -3465,12 +3463,12 @@ define("scripts/lib/ucren.js", function( exports ){
       getCoors: function( e ){
         var coors = [];
 
-        if ( e.targetTouches && e.targetTouches.length ) { // iPhone
+        if( e.targetTouches && e.targetTouches.length ){ // iPhone
           var thisTouch = e.targetTouches[0];
           coors[0] = thisTouch.clientX;
           coors[1] = thisTouch.clientY;
         }
-        else { // all others
+        else{ // all others
           coors[0] = e.clientX;
           coors[1] = e.clientY;
         }
@@ -3480,20 +3478,16 @@ define("scripts/lib/ucren.js", function( exports ){
 
       // private
       startDrag: function(){
-        var target, draging, e;
-        target = this.target;
-        draging = target.draging = {};
-
-        this.isDraging = true;
+        var e = ucren.Event(), coors = this.getCoors( e ),
+            target = this.target, draging = target.draging = {};
 
         draging.x = parseInt( target.style( "left" ), 10 ) || 0;
         draging.y = parseInt( target.style( "top" ), 10 ) || 0;
 
-        e = ucren.Event();
-        var coors = this.getCoors( e );
         draging.mouseX = coors[0];
         draging.mouseY = coors[1];
 
+        this.isDraging = true;
         this.registerDocumentEvent();
       },
 
@@ -3505,9 +3499,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
       // private
       registerDocumentEvent: function(){
-        var target, draging;
-        target = this.target;
-        draging = target.draging;
+        var target = this.target, draging = target.draging;
 
         draging.documentSelectStart =
           ucren.addEvent( document, "selectstart", function( e ){
@@ -3519,19 +3511,16 @@ define("scripts/lib/ucren.js", function( exports ){
 
         draging.documentMouseMove =
           ucren.addEvent( document, this.TOUCH_MOVE, function( e ){
-            var ie, nie;
             e = e || event;
-            ie = ucren.isIe && e.button != 1;
-            nie = !ucren.isIe && e.button != 0;
+            var coors = this.getCoors( e ),
+                ie = ucren.isIe && e.button != 1, nie = !ucren.isIe && e.button != 0;
 
-            if( (ie || nie ) && !this.isTouch )
+            if( ( ie || nie ) && !this.isTouch )
               this.endDrag();
 
-            var coors = this.getCoors( e );
             draging.newMouseX = coors[0];
             draging.newMouseY = coors[1];
             e.stopPropagation && e.stopPropagation();
-
             return e.returnValue = false;
           }.bind( this ));
 
@@ -3908,7 +3897,7 @@ define("scripts/lib/ucren.js", function( exports ){
       getSize: function(){
         var dom = this.dom, display = this.style( "display" );
 
-        if ( display && display !== "none" ) {
+        if( display && display !== "none" ){
           return { width: dom.offsetWidth, height: dom.offsetHeight };
         }
 
@@ -3923,7 +3912,7 @@ define("scripts/lib/ucren.js", function( exports ){
           display:    "block"
         };
 
-        if ( originalStyles.position !== "fixed" )
+        if( originalStyles.position !== "fixed" )
           newStyles.position = "absolute";
 
         this.style( newStyles );
