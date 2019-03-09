@@ -232,7 +232,7 @@ define("scripts/game.js", function( exports ){
     boomSnd = sound.create( "sound/boom" );
     timeline.setTimeout(function(){
       state( "game-state" ).set( "playing" );
-      gameInterval = timeline.setInterval( barbette, 1e3 );
+      gameInterval = timeline.setInterval( barbette, 1000 );
     }, 500);
   };
 
@@ -440,7 +440,7 @@ define("scripts/main.js", function( exports ){
   var setTimeout = timeline.setTimeout.bind( timeline );
 
   var log = function(){
-    var fn, time = 1e3, add = 300;
+    var fn, time = 1000, add = 300;
 
     fn = function( text ){
       setTimeout( function(){ csl.log( text ); }, time );
@@ -947,9 +947,9 @@ define("scripts/timeline.js", function( exports ){
    */
   /*
   ClassTimer.prototype.getFPS = function(){
-    var t = now(), c = this.count, fps = c / ( t - this.startTime ) * 1e3;
+    var t = now(), c = this.count, fps = c / ( t - this.startTime ) * 1000;
 
-    if( c > 1e3 )
+    if( c > 1000 )
       this.count = 0,
       this.startTime = t;
 
@@ -1437,7 +1437,7 @@ define("scripts/factory/fruit.js", function( exports ){
   };
 
   ClassFruit.prototype.onRotating = function( time ){
-    this.image.rotate( ( this.rotateSpeed * time / 1e3 ) % 360, true );
+    this.image.rotate( ( this.rotateSpeed * time / 1000 ) % 360, true );
   };
 
   // 裂开相关
@@ -1693,7 +1693,7 @@ define("scripts/factory/rotate.js", function( exports ){
     module.onRotating = function(){
       var lastTime = 0, an = defaultAngle;
       return function( time, name, a, b ){
-        an = ( an + ( time - lastTime ) / 1e3 * rotateDire ) % 360;
+        an = ( an + ( time - lastTime ) / 1000 * rotateDire ) % 360;
         image.rotate( an, true );
         lastTime = time;
       }
@@ -2638,7 +2638,7 @@ define("scripts/lib/sound.js", function( exports ){
   };
 
   ClassBuzz.prototype.stop = function(){
-    this.sound.fadeOut( 1e3, function(){
+    this.sound.fadeOut( 1000, function(){
       this.pause();
     });
   };
@@ -4409,7 +4409,7 @@ define("scripts/object/home-mask.js", function( exports ){
   var tween = require("scripts/lib/tween");
   var displacement = require("scripts/factory/displacement");
 
-  exports = displacement.create("images/home-mask.png", 320, 180, 0, -180, 0, 0, tween.exponential.co, 1e3);
+  exports = displacement.create("images/home-mask.png", 320, 180, 0, -180, 0, 0, tween.exponential.co, 1000);
   return exports;
 });
 
@@ -4557,7 +4557,7 @@ define("scripts/object/light.js", function( exports ){
     message.postMessage( "overWhiteLight.show" );
     this.removeLights();
 
-    var dur = 3e3;
+    var dur = 3000;
     var mask = maskLayer.rect( 0, 0, 320, 480 ).attr({ fill: "#fff", stroke: "none" });
     var control = {
       onTimeUpdate: function( time ){
@@ -4611,7 +4611,7 @@ define("scripts/object/logo.js", function( exports ){
   var tween = require("scripts/lib/tween");
   var displacement = require("scripts/factory/displacement");
 
-  exports = displacement.create("images/logo.png", 144, 132, 16, -180, 16, 4, tween.exponential.co, 1e3);
+  exports = displacement.create("images/logo.png", 144, 132, 16, -180, 16, 4, tween.exponential.co, 1000);
   return exports;
 });
 
@@ -4766,7 +4766,7 @@ define("scripts/object/ninja.js", function( exports ){
   exports = displacement.create("images/ninja.png", 122, 78, 170, -140, 170, 40, {
     show: tween.bounce.co,
     hide: tween.exponential.co
-  }, 1e3);
+  }, 1000);
   return exports;
 });
 
