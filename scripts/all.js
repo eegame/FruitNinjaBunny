@@ -179,7 +179,7 @@ define("scripts/game.js", function( exports ){
   var gameOver = require("scripts/object/game-over");
 
   var gameInterval, snd, boomSnd, openSnd, startSnd, endSnd;
-  var fruits = [], scoreNum = 0, volleyNum = 2, volleyMultipleNum = 5;
+  var fruits = [], scoreNum = 0, volleyNum = 1, volleyMultipleNum = 5;
   var random = ucren.randomNumber;
   var divTyping = document.getElementById( "game" );
 
@@ -243,7 +243,7 @@ define("scripts/game.js", function( exports ){
 
     fruits.length = 0;
     scoreNum = 0;
-    volleyNum = 2;
+    volleyNum = 1;
     volleyMultipleNum = 5;
 
     endSnd = sound.create( "sound/end" );
@@ -268,7 +268,7 @@ define("scripts/game.js", function( exports ){
   };
 
   exports.applyScore = function( score ){
-    if( score > volleyNum * volleyMultipleNum )
+    if( score > ( volleyNum + 1 ) * volleyMultipleNum )
       volleyNum++,
       volleyMultipleNum += 5;
   };
