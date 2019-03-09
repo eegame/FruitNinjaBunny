@@ -3220,11 +3220,14 @@ define("scripts/lib/ucren.js", function( exports ){
 
       if( !e ){
         var c = arguments.callee.caller;
+
         while( c ){
           e = c.arguments[0];
+
           if( e && typeof( e.altKey ) == "boolean" ){ // duck typing
             break;
           }
+
           c = c.caller;
           e = null;
         }
