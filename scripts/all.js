@@ -770,7 +770,7 @@ define("scripts/state.js", function( exports ){
         return function( value ){
           var c;
           stack[key] = value;
-          if( lastValue !== value && ( c = callbacks[ key ] ) )
+          if( lastValue !== value && c = callbacks[ key ] )
             for( var i = 0, l = c.length; i < l; i++ )
               c[i].call( this, value );
           lastValue = value;
