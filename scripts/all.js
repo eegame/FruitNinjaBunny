@@ -2879,14 +2879,14 @@ define("scripts/lib/ucren.js", function( exports ){
     // ucren.isFirefox
     isFirefox: /firefox/i.test( navigator.userAgent ),
 
-    // ucren.isSafari
-    isSafari: /version\/[\d\.]+\s+safari/i.test( navigator.userAgent ),
-
     // ucren.isOpera
     isOpera: /opera/i.test( navigator.userAgent ),
 
     // ucren.isChrome
-    isChrome: /chrome/i.test( navigator.userAgent ), // TODO: isChrome = true, isSafari = true
+    isChrome: /chrome/i.test( navigator.userAgent ),
+
+    // ucren.isSafari
+    isSafari: /version\/[\d\.]+\s+safari/i.test( navigator.userAgent ), // TODO: isChrome = true, isSafari = true;
 
     // ucren.isStrict
     isStrict: document.compatMode == "CSS1Compat",
@@ -4024,7 +4024,7 @@ define("scripts/lib/ucren.js", function( exports ){
         /**
          * 调用示例：el.useMouseAction( "xbutton", "over,out,down,up" );
          * 使用效果：el会在"xbutton xbutton-over", "xbutton xbutton-out", "xbutton xbutton-down", "xbutton xbutton-up"
-         *           等四个className中根据相应的鼠标事件来进行切换。
+         *        等四个className中根据相应的鼠标事件来进行切换。
          * 特别提示：useMouseAction可使用不同参数多次调用。
          */
         if( !this.MouseAction )
