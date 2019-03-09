@@ -118,8 +118,8 @@ define("scripts/collide.js", function(exports){
 define("scripts/control.js", function(exports){
   var message = require("scripts/message");
   var state = require("scripts/state");
-  var knife = require("scripts/object/knife");
   var ucren = require("scripts/lib/ucren");
+  var knife = require("scripts/object/knife");
 
   var canvasLeft = 0, canvasTop = 0;
 
@@ -168,6 +168,8 @@ define("scripts/game.js", function( exports ){
   var message = require("scripts/message");
   var timeline = require("scripts/timeline");
   var state = require("scripts/state");
+  var sound = require("scripts/lib/sound");
+  var ucren = require("scripts/lib/ucren");
   var fruit = require("scripts/factory/fruit");
   var background = require("scripts/object/background");
   var score = require("scripts/object/score");
@@ -175,8 +177,6 @@ define("scripts/game.js", function( exports ){
   var light = require("scripts/object/light");
   var lose = require("scripts/object/lose");
   var gameOver = require("scripts/object/game-over");
-  var sound = require("scripts/lib/sound");
-  var ucren = require("scripts/lib/ucren");
 
   var gameInterval, snd, boomSnd, openSnd, startSnd, endSnd;
   var fruits = [], scoreNum = 0, volleyNum = 2, volleyMultipleNum = 5;
@@ -433,9 +433,9 @@ define("scripts/main.js", function( exports ){
   var tools = require("scripts/tools");
   var state = require("scripts/state");
   var game = require("scripts/game");
-  var csl = require("scripts/object/console");
   var buzz = require("scripts/lib/buzz");
   var ucren = require("scripts/lib/ucren");
+  var csl = require("scripts/object/console");
 
   var setTimeout = timeline.setTimeout.bind( timeline );
 
@@ -567,10 +567,10 @@ define("scripts/message.js", function( exports ){
 define("scripts/scene.js", function( exports ){
   var message = require("scripts/message");
   var state = require("scripts/state");
-  var fruit = require("scripts/factory/fruit");
-  var flash = require("scripts/object/flash");
   var sound = require("scripts/lib/sound");
   var ucren = require("scripts/lib/ucren");
+  var fruit = require("scripts/factory/fruit");
+  var flash = require("scripts/object/flash");
 
   // fixed elements
   var background = require("scripts/object/background");
@@ -743,8 +743,8 @@ define("scripts/state.js", function( exports ){
    * state( key ).on()           -> set value of key to boolean value 'true'
    * state( key ).off()          -> set value of key to boolean value 'false'
    */
-  var ucren = require("scripts/lib/ucren");
   var timeline = require("scripts/timeline");
+  var ucren = require("scripts/lib/ucren");
 
   var stack = {}, cache = {}, callbacks = {};
 
@@ -1187,11 +1187,11 @@ define("scripts/factory/fruit.js", function( exports ){
   var message = require("scripts/message");
   var timeline = require("scripts/timeline").use( "fruit" ).init( 1 );
   var timeline2 = require("scripts/timeline").use( "fruit-apart" ).init( 1 );
-  var flame = require("scripts/object/flame");
-  var flash = require("scripts/object/flash");
-  var juice = require("scripts/factory/juice");
   var tween = require("scripts/lib/tween");
   var ucren = require("scripts/lib/ucren");
+  var juice = require("scripts/factory/juice");
+  var flame = require("scripts/object/flame");
+  var flash = require("scripts/object/flash");
 
   var ie = ucren.isIe, safari = ucren.isSafari;
   var zoomAnim = tween.exponential.co;
@@ -4065,9 +4065,9 @@ define("scripts/lib/ucren.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\background.js
  */
 define("scripts/object/background.js", function( exports ){
-  var ucren = require("scripts/lib/ucren");
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline");
+  var ucren = require("scripts/lib/ucren");
 
   var image, time, random = ucren.randomNumber;
 
