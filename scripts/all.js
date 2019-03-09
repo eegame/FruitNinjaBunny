@@ -1646,7 +1646,7 @@ define("scripts/factory/rotate.js", function( exports ){
   var ucren = require("scripts/lib/ucren");
 
   exports.create = function( imageSrc, x, y, w, h, z, anim, animDur ){
-    var module = {}, image;
+    var image, module = {};
     var rotateDire = [12, -12][ucren.randomNumber(2)];
     var defaultAngle = ucren.randomNumber(360);
 
