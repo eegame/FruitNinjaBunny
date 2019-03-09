@@ -3003,8 +3003,7 @@ define("scripts/lib/ucren.js", function( exports ){
         prototype[key] = function( method, name ){
           if( typeof( method ) == "function" ){
             return function(){
-              var args, rtn;
-              args = slice.call( arguments, 0 );
+              var rtn, args = slice.call( arguments, 0 );
 
               if( befores &&
                 befores.apply( this, [name].concat( args )) === false ){
