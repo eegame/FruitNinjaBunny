@@ -1170,7 +1170,7 @@ define("scripts/factory/displacement.js", function( exports ){
  */
 define("scripts/factory/fruit.js", function( exports ){
   /**
-   * 水果模块模型
+   * 水果类模块模型
    */
   var layer = require("scripts/layer");
   var message = require("scripts/message");
