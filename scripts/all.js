@@ -166,8 +166,8 @@ define("scripts/game.js", function( exports ){
    */
   //var scene = require("scripts/scene");
   var message = require("scripts/message");
-  var timeline = require("scripts/timeline");
   var state = require("scripts/state");
+  var timeline = require("scripts/timeline");
   var sound = require("scripts/lib/sound");
   var ucren = require("scripts/lib/ucren");
   var fruit = require("scripts/factory/fruit");
@@ -428,11 +428,11 @@ define("scripts/main.js", function( exports ){
   var scene = require("scripts/scene");
   var collide = require("scripts/collide");
   var control = require("scripts/control");
+  var game = require("scripts/game");
   var message = require("scripts/message");
+  var state = require("scripts/state");
   var timeline = require("scripts/timeline");
   var tools = require("scripts/tools");
-  var state = require("scripts/state");
-  var game = require("scripts/game");
   var buzz = require("scripts/lib/buzz");
   var ucren = require("scripts/lib/ucren");
   var csl = require("scripts/object/console");
@@ -2622,10 +2622,11 @@ define("scripts/lib/sound.js", function( exports ){
   /**
    * usage:
    * var sound = require("scripts/lib/sound/main");
-   * var snd = sound.create("sounds/myfile");
+   * var snd = sound.create("sounds/bgm");
    * snd.play();
    */
   var buzz = require("scripts/lib/buzz");
+
   var supported = buzz.isSupported();
 
   var config = {
@@ -2636,7 +2637,7 @@ define("scripts/lib/sound.js", function( exports ){
   };
 
   function ClassBuzz( src ){
-      this.sound = new buzz.sound( src, config );
+    this.sound = new buzz.sound( src, config );
   }
 
   ClassBuzz.prototype.play = function( s ){
@@ -4184,16 +4185,15 @@ define("scripts/object/flame.js", function( exports ){
   var timeline = require("scripts/timeline");
   var ucren = require("scripts/lib/ucren");
 
+  var guid = 0, trunc = parseInt, math = Math,
+      sin = math.sin, cos = math.cos,
+      pi = math.PI, random = math.random;
+
   //raphael.path('M 27,122 Q 9,42 27,21 45,42 27,122')
   //  .attr({
   //    stroke: 'none',
   //    fill: '180-#D8D380-#EDED7A-#D8D380'
   //  });
-
-  // 缩写
-  var guid = 0, trunc = parseInt, math = Math,
-      sin = math.sin, cos = math.cos,
-      pi = math.PI, random = math.random;
 
   /**
    * 添加一个火苗
@@ -4300,8 +4300,8 @@ define("scripts/object/flame.js", function( exports ){
 define("scripts/object/flash.js", function( exports ){
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline").use( "flash" ).init( 10 );
-  var tween = require("scripts/lib/tween");
   var sound = require("scripts/lib/sound");
+  var tween = require("scripts/lib/tween");
 
   var image, xDiff = 0, yDiff = 0, dur = 100;
   var anim = tween.quadratic.cio, anims = [];
