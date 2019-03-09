@@ -968,8 +968,8 @@ define("scripts/timeline.js", function( exports ){
   };
 
   ClassTimer.prototype.update = function( time ){
-    var tasks = this.tasks, adding = this.adding, addingTasks = this.addingTasks;
-    var i = tasks.length, t, task, start, duration, data;
+    var tasks = this.tasks, adding = this.adding, addingTasks = this.addingTasks,
+        i = tasks.length, t, task, start, duration, data;
 
     while( i-- ){
       task = tasks[i];
