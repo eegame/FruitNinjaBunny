@@ -268,7 +268,7 @@ define("scripts/game.js", function( exports ){
   };
 
   exports.applyScore = function( score ){
-    if( score > volleyNum * volleyMultipleNum )
+    if( score >= volleyNum * volleyMultipleNum )
       volleyNum++,
       volleyMultipleNum *= 2;
   };
