@@ -1425,7 +1425,7 @@ define("scripts/factory/fruit.js", function( exports ){
     message.postMessage( this, "fruit.remove" );
   };
 
-  // 显示/隐藏 相关
+  // 显示/隐藏相关
   ClassFruit.prototype.onShowStart = function(){
     this.image.show();
     //this.shadow.show();
@@ -4140,7 +4140,7 @@ define("scripts/object/developing.js", function( exports ){
     });
   };
 
-  // 显示/隐藏 相关
+  // 显示/隐藏相关
   exports.onZoomStart = function(){
     this.image.show();
   };
@@ -4383,7 +4383,7 @@ define("scripts/object/game-over.js", function( exports ){
     });
   };
 
-  // 显示/隐藏 相关
+  // 显示/隐藏相关
   exports.onZoomStart = function( sz, ez, mode ){
     if( mode === "show" )
       this.image.show();
@@ -4708,7 +4708,7 @@ define("scripts/object/lose.js", function( exports ){
     });
   };
 
-  // 显示/隐藏 相关
+  // 显示/隐藏相关
   exports.onTimeUpdate = function( time, mode, x1s, x1e, x2s, x2e, x3s, x3e ){
     o1.attr( "x", anim( time, x1s, x1e - x1s, animLength ) );
     o2.attr( "x", anim( time, x2s, x2e - x2s, animLength ) );
@@ -4853,7 +4853,7 @@ define("scripts/object/score.js", function( exports ){
     //message.postMessage( number, "score.change" );
   };
 
-  // 显示/隐藏 相关
+  // 显示/隐藏相关
   exports.onTimeUpdate = function( time, mode, isx, iex, t1sx, t1ex, t2sx, t2ex ){
     image.attr( "x", anim( time, isx, iex - isx, animLength ) );
     text.attr( "x", anim( time, t1sx, t1ex - t1sx, animLength ) );
