@@ -3859,7 +3859,7 @@ define("scripts/lib/ucren.js", function( exports ){
             }
           }
 
-          if( ucren.isSafari && this.style( "position" ) == "absolute" ){ // safari doubles in some cases
+          if( ucren.isSafari && this.style( "position" ) == "absolute" ){ // Safari doubles in some cases
             pos.x -= document.body.offsetLeft;
             pos.y -= document.body.offsetTop;
           }
