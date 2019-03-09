@@ -1234,7 +1234,7 @@ define("scripts/factory/fruit.js", function( exports ){
   }
 
   ClassFruit.prototype.set = function( hide ){
-    var inf = infos[ this.type ], radius = this.radius;
+    var inf = infos[this.type], radius = this.radius;
 
     this.shadow = layer.createImage( "fruit", "images/shadow.png", this.startX - radius, this.startY - radius + shadowPos, 106, 76 );
     this.image = layer.createImage( "fruit", inf[0], this.startX - radius, this.startY - radius, inf[1], inf[2] );
