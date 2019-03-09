@@ -770,7 +770,7 @@ define("scripts/state.js", function( exports ){
         return function( value ){
           var c;
           stack[key] = value;
-          if( lastValue !== value && c = callbacks[ key ] )
+          if( lastValue !== value && ( c = callbacks[ key ] ) )
             for( var i = 0, l = c.length; i < l; i++ )
               c[i].call( this, value );
           lastValue = value;
@@ -890,7 +890,6 @@ define("scripts/timeline.js", function( exports ){
         this.taskList( conf.recycle, task );
 
       this.start();
-
       return task;
   };
 
@@ -904,10 +903,12 @@ define("scripts/timeline.js", function( exports ){
     if( !queue.clear )
       queue.clear = function(){
         var i = this.length;
+
         while( i-- )
           task = this[i],
           task.stop(),
           this.splice( i, 1 );
+
         return this;
       };
 
