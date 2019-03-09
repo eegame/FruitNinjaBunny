@@ -4453,7 +4453,6 @@ define("scripts/object/knife.js", function( exports ){
     this.sy = conf.sy;
     this.ex = conf.ex;
     this.ey = conf.ey;
-
     knifes.push( this );
   }
 
@@ -4464,10 +4463,10 @@ define("scripts/object/knife.js", function( exports ){
         ey = this.ey,
         dx = sx - ex,
         dy = sy - ey,
-        ax = abs(dx),
-        ay = abs(dy);
+        ax = abs( dx ),
+        ay = abs( dy );
 
-    if(ax > ay)
+    if( ax > ay )
       sx += dx < 0 ? -1 : 1,
       sy += dy < 0 ? -( 1 * ay / ax ) : 1 * ay / ax;
     else
