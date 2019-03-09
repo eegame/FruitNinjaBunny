@@ -644,22 +644,18 @@ define("scripts/scene.js", function( exports ){
 
   // enter home menu
   exports.showMenu = function( callback ){
-    var callee = arguments.callee;
-    var times = callee.times = ++callee.times || 1;
+    var callee = arguments.callee, times = callee.times = ++callee.times || 1;
 
     openSnd.play();
-
     sandia = fruit.create( "sandia", 216, 224, true );
     boom = fruit.create( "boom", 234, 392, true, 2500 );
     bunny = fruit.create( "bunny", -16, 182, true );
-
     [ sandia, boom ].forEach(function( f ){ f.isHomeMenu = 1; });
     sandia.isNewGameIcon = boom.isQuitIcon = 1;
 
     var group = [
       [ homeMask, 0 ],
       [ logo, 0 ],
-
       [ ninja, 500 ],
       [ homeDesc, 1500 ],
 
@@ -673,16 +669,14 @@ define("scripts/scene.js", function( exports ){
 
     group.invoke( "show" );
     [ sandia ].invoke( "rotate", 2500 );
-
     setTimeout( callback, 2500 );
   };
 
   // exit home menu
   exports.hideMenu = function( callback ){
-    [ newGame, quit ].invoke( "hide" );
     [ homeMask, logo, ninja, homeDesc ].invoke( "hide" );
+    [ newGame, quit ].invoke( "hide" );
     [ sandia, boom, bunny ].invoke( "fallOff", 150 );
-
     openSnd.stop();
     setTimeout( callback, fruit.getDropTimeSetting() );
   };
