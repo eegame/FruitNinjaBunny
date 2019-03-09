@@ -103,7 +103,7 @@ define("scripts/collide.js", function(exports){
     return result;
   }
 
-  // 判断计算线段和椭圆是否相交
+  // 判断线段和椭圆是否相交
   function lineInEllipse(p1, p2, c, r, e){
     var t = lineXEllipse(p1, p2, c, r, e);
     return t && (t[0] || t[1]);
