@@ -534,7 +534,6 @@ define("scripts/message.js", function( exports ){
   exports.postMessage = function( message/*,message, message...*/, to ){
     var messages = [].slice.call( arguments, 0 ),
         splitIndex = messages.length - 1;
-
     to = messages[ splitIndex ];
     messages.slice( 0, splitIndex );
     ucren.dispatch( to, messages );
@@ -610,8 +609,7 @@ define("scripts/scene.js", function( exports ){
 
   // switch scene
   exports.switchScene = function( name ){
-    var curScene = state( "scene-name" );
-    var sceneState = state( "scene-state" );
+    var curScene = state( "scene-name" ), sceneState = state( "scene-state" );
 
     if( curScene.is( name ) )
       return;
