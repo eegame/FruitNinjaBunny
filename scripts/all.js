@@ -379,12 +379,12 @@ define("scripts/layer.js", function( exports ){
   };
 
   exports.createImage = function( layer, src, x, y, w, h ){
-    layer = this.getLayer( layer );
-    return layer.image( src, x, y, w, h );
+    layer = this.getLayer(layer);
+    return layer.image(src, x, y, w, h);
   };
 
   exports.createText = function( layer, text, x, y, fill, size ){
-    layer = this.getLayer( layer );
+    layer = this.getLayer(layer);
 
     if( ucren.isIe )
       y += 2;
@@ -838,7 +838,7 @@ define("scripts/timeline.js", function( exports ){
   var timeline = {}, timerCache = {};
   //var timer = timeline;
   // <or>
-  //var timer = timeline.use( name ).init( 10 ); // to use a new timeline instance
+  //var timer = timeline.use(name).init(10); // to use a new timeline instance
   //var t = timer.createTask(...);
   //
   //t.stop();
@@ -1057,7 +1057,7 @@ define("scripts/timeline.js", function( exports ){
   /**
    * for backward compatibility
    */
-  exports = timeline.use( "default" ).init( 10 );
+  exports = timeline.use("default").init(10);
   exports.use = function( name ){
     if( ucren.isIe )
       exports;
@@ -1185,8 +1185,8 @@ define("scripts/factory/fruit.js", function( exports ){
    */
   var layer = require("scripts/layer");
   var message = require("scripts/message");
-  var timeline = require("scripts/timeline").use( "fruit" ).init( 1 );
-  var timeline2 = require("scripts/timeline").use( "fruit-apart" ).init( 1 );
+  var timeline = require("scripts/timeline").use("fruit").init(1);
+  var timeline2 = require("scripts/timeline").use("fruit-apart").init(1);
   var tween = require("scripts/lib/tween");
   var ucren = require("scripts/lib/ucren");
   var juice = require("scripts/factory/juice");
@@ -1214,12 +1214,12 @@ define("scripts/factory/fruit.js", function( exports ){
     bunny: [ "images/fruit/bunny.png", 240, 240, 0, 0, 0, null ]
   };
 
-  var types = [ "apple", "peach", "sandia", "basaha", "banana" ];
-  var rotateSpeed = [ 60, 50, 40, -40, -50, -60 ];
-  var fruitCache = [];
+  var types = [ "apple", "peach", "sandia", "basaha", "banana" ],
+      rotateSpeed = [ 60, 50, 40, -40, -50, -60 ],
+      fruitCache = [];
 
-  function ClassFruit(conf){
-    var info = infos[ conf.type ], radius = info[3];
+  function ClassFruit( conf ){
+    var info = infos[conf.type], radius = info[3];
 
     this.type = conf.type;
     this.originX = conf.originX;
@@ -1565,7 +1565,7 @@ define("scripts/factory/juice.js", function( exports ){
    * 果汁
    */
   var layer = require("scripts/layer").getLayer("juice");
-  var timeline = require("scripts/timeline").use( "juice" ).init( 10 );
+  var timeline = require("scripts/timeline").use("juice").init(10);
   var tools = require("scripts/tools");
   var tween = require("scripts/lib/tween");
   var ucren = require("scripts/lib/ucren");
@@ -4179,7 +4179,7 @@ define("scripts/object/flame.js", function( exports ){
   /**
    * 火焰模块
    */
-  var layer = require("scripts/layer").getLayer( "fruit" );
+  var layer = require("scripts/layer").getLayer("fruit");
   var timeline = require("scripts/timeline");
   var ucren = require("scripts/lib/ucren");
 
@@ -4297,7 +4297,7 @@ define("scripts/object/flame.js", function( exports ){
  */
 define("scripts/object/flash.js", function( exports ){
   var layer = require("scripts/layer");
-  var timeline = require("scripts/timeline").use( "flash" ).init( 10 );
+  var timeline = require("scripts/timeline").use("flash").init(10);
   var sound = require("scripts/lib/sound");
   var tween = require("scripts/lib/tween");
 
@@ -4445,7 +4445,7 @@ define("scripts/object/knife.js", function( exports ){
   /**
    * 刀光模块
    */
-  var layer = require("scripts/layer").getLayer( "knife" );
+  var layer = require("scripts/layer").getLayer("knife");
   var timeline = require("scripts/timeline");
   var ucren = require("scripts/lib/ucren");
 
