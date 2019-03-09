@@ -3596,12 +3596,10 @@ define("scripts/lib/ucren.js", function( exports ){
       isucrenElement: true,
 
       attr: function( name, value ){
-        if( typeof value == "string" ){
+        if( typeof value == "string" )
           this.dom.setAttribute( name, value );
-        }
-        else{
+        else
           return this.dom.getAttribute( name );
-        }
 
         return this;
       },
@@ -3675,15 +3673,12 @@ define("scripts/lib/ucren.js", function( exports ){
       html: function( html ){
         var el = this.dom;
 
-        if( typeof html == "string" ){
+        if( typeof html == "string" )
           el.innerHTML = html;
-        }
-        else if( html instanceof Array ){
+        else if( html instanceof Array )
           el.innerHTML = html.join( "" );
-        }
-        else{
+        else
           return el.innerHTML;
-        }
 
         return this;
       },
@@ -3805,12 +3800,10 @@ define("scripts/lib/ucren.js", function( exports ){
       insert: function( dom ){
         var tdom = this.dom;
 
-        if( tdom.firstChild ){
+        if( tdom.firstChild )
           tdom.insertBefore( dom, tdom.firstChild );
-        }
-        else{
+        else
           this.add( dom );
-        }
 
         return this;
       },
@@ -3898,9 +3891,8 @@ define("scripts/lib/ucren.js", function( exports ){
       getSize: function(){
         var dom = this.dom, display = this.style( "display" );
 
-        if( display && display !== "none" ){
+        if( display && display !== "none" )
           return { width: dom.offsetWidth, height: dom.offsetHeight };
-        }
 
         var style = dom.style;
         var originalStyles = {
@@ -3962,8 +3954,9 @@ define("scripts/lib/ucren.js", function( exports ){
           }
           //else if( es.filter === "string" ){}
           else{
-            if( element.currentStyle && !element.currentStyle.hasLayout )
+            if( element.currentStyle && !element.currentStyle.hasLayout ){
               es.zoom = 1;
+            }
 
             if( reOpacity.test( es.filter )){
               value = value >= 99.99 ? "" : ( "alpha( opacity=" + value + " )" );
