@@ -1548,7 +1548,7 @@ define("scripts/factory/fruit.js", function( exports ){
   };
 
   function getType(){
-    if( random( 5 ) == 0 )
+    if( random( 8 ) == 0 )
       return "boom";
     else
       return types[ random( 5 ) ];
