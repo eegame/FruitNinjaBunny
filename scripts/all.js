@@ -2737,10 +2737,13 @@ define("scripts/lib/ucren.js", function( exports ){
   // String.prototype.subByte
   String.prototype.subByte = function( len, tail ){
     var s = this;
+
     if( s.byteLength() <= len )
       return s;
+
     tail = tail || "";
     len -= tail.byteLength();
+
     return s = s.slice( 0, len ).replace( /( [^\x00-\xff] )/g, "$1 " )
       .slice( 0, len )
       .replace( /[^\x00-\xff]$/, "" )
