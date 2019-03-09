@@ -1304,7 +1304,7 @@ define("scripts/factory/fruit.js", function( exports ){
 
     if( this.type !== "boom" )
       flash.showAt( this.originX, this.originY, angle ),
-      juice.create( this.originX, this.originY, infos[ this.type ][6] ),
+      juice.create( this.originX, this.originY, infos[this.type][6] ),
       this.apart( angle );
     else
       this.hide();
@@ -1323,7 +1323,7 @@ define("scripts/factory/fruit.js", function( exports ){
     this.shadow.hide();
     this.aparted = true;
 
-    var inf = infos[ this.type ], preSrc = inf[0].replace( ".png", "" ), radius = this.radius;
+    var inf = infos[this.type], preSrc = inf[0].replace( ".png", "" ), radius = this.radius;
     var create = layer.createImage.saturate( layer, this.startX - radius, this.startY - radius, inf[1], inf[2] );
 
     angle = ( ( angle % 180 ) + 360 + inf[4] ) % 360;
