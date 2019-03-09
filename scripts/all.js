@@ -473,7 +473,7 @@ define("scripts/main.js", function( exports ){
     var fruits = collide.check( knife ), angle;
 
     if( fruits.length ){
-      angle = tools.getAngleByRadian( tools.pointToRadian( knife.slice(0, 2), knife.slice(2, 4) ) );
+      angle = tools.getAngleByRadian( tools.pointToRadian( knife.slice( 0, 2 ), knife.slice( 2, 4 ) ) );
       fruits.forEach(function( fruit ){
         message.postMessage( fruit, angle, "slice.at" );
       });
@@ -994,7 +994,7 @@ define("scripts/timeline.js", function( exports ){
           updateTask( task, t );
         else
           updateTask( task, duration ),
-          task.onTimeEnd.apply( task.object, task.data.slice(1) ),
+          task.onTimeEnd.apply( task.object, task.data.slice( 1 ) ),
           tasks.splice( i, 1 );
       }
     }
@@ -1050,7 +1050,7 @@ define("scripts/timeline.js", function( exports ){
   var checkStartTask = function( task ){
     if( !task.started )
       task.started = 1,
-      task.onTimeStart.apply( task.object, task.data.slice(1) ),
+      task.onTimeStart.apply( task.object, task.data.slice( 1 ) ),
       updateTask( task, 0 );
   };
 
