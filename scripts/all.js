@@ -4392,7 +4392,7 @@ define("scripts/object/game-over.js", function( exports ){
 
   // 显示/隐藏 相关
   exports.onZoomStart = function( sz, ez, mode ){
-    if( mode == "show" )
+    if( mode === "show" )
       this.image.show();
   };
 
@@ -4723,12 +4723,12 @@ define("scripts/object/lose.js", function( exports ){
   };
 
   exports.onTimeStart = function( mode ){
-    if( mode == "show" )
+    if( mode === "show" )
       [ o1, o2, o3 ].invoke( "show" );
   };
 
   exports.onTimeEnd = function( mode ){
-    if( mode == "hide" )
+    if( mode === "hide" )
       [ o1, o2, o3 ].invoke( "hide" ),
       this.reset();
   };
