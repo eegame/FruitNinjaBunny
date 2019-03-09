@@ -1117,7 +1117,7 @@ define("scripts/factory/displacement.js", function( exports ){
 
     var anim = {};
 
-    if( typeof animMap === "function" )
+    if( typeof animMap == "function" )
         anim.show = anim.hide = animMap;
     else
       anim = animMap;
@@ -1367,7 +1367,7 @@ define("scripts/factory/fruit.js", function( exports ){
 
       var y = 600;
 
-      if( typeof x !== "number" )
+      if( typeof x != "number" )
         x = this.originX + random( dropXScope ) * sign[ ( signIndex++ ) % 2 ];
 
       this.fallTargetX = x;
@@ -1404,7 +1404,7 @@ define("scripts/factory/fruit.js", function( exports ){
       fruitCache.splice( index, 1 );
 
     for( var name in this )
-      if( typeof this[name] === "function" )
+      if( typeof this[name] == "function" )
         this[name] = function( name ){
           return function(){
             throw new Error( "method " + name + " has been removed" );
@@ -2994,7 +2994,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
       ucren.each( methods, function( item, key ){
         prototype[key] = function( method, name ){
-          if( typeof( method ) == "function" ){
+          if( typeof method == "function" ){
             return function(){
               var rtn, args = slice.call( arguments, 0 );
 
@@ -3115,12 +3115,12 @@ define("scripts/lib/ucren.js", function( exports ){
       };
 
       ret = function( arg1, arg2, arg3 ){
-        if( typeof( arg2 ) === "undefined" )
+        if( typeof arg2 == "undefined" )
           arg2 = [];
 
         if( arg2 instanceof Array )
           send.apply( this, arguments );
-        else if( typeof( arg2 ) === "function" )
+        else if( typeof arg2 == "function" )
           incept.apply( this, arguments );
       };
 
@@ -3149,7 +3149,7 @@ define("scripts/lib/ucren.js", function( exports ){
           //}
         unknown.forEach( fn );
       }
-      else if( typeof( unknown ) == "object" ){
+      else if( typeof unknown == "object" ){
         var blank = {};
 
         for( var i in unknown ){
@@ -3162,14 +3162,14 @@ define("scripts/lib/ucren.js", function( exports ){
           }
         }
       }
-      else if( typeof( unknown ) == "number" ){
+      else if( typeof unknown == "number" ){
         for( var i = 0; i < unknown; i++ ){
           if( fn( i, i ) === false ){
             break;
           }
         }
       }
-      else if( typeof( unknown ) == "string" ){
+      else if( typeof unknown == "string" ){
         for( var i = 0, l = unknown.length; i < l; i++ ){
           if( fn( unknown.charAt( i ), i ) === false ){
             break;
@@ -3186,7 +3186,7 @@ define("scripts/lib/ucren.js", function( exports ){
         return returnDom ? el.dom : el;
       }
 
-      el = typeof( el ) == "string" ? document.getElementById( el ) : el;
+      el = typeof el == "string" ? document.getElementById( el ) : el;
 
       if( !el )
         return null;
@@ -3217,7 +3217,7 @@ define("scripts/lib/ucren.js", function( exports ){
         while( c ){
           e = c.arguments[0];
 
-          if( e && typeof( e.altKey ) == "boolean" ){ // duck typing
+          if( e && typeof e.altKey == "boolean" ){ // duck typing
             break;
           }
 
@@ -3231,12 +3231,12 @@ define("scripts/lib/ucren.js", function( exports ){
 
     // ucren.fixNumber
     fixNumber: function( unknown, defaultValue ){
-      return typeof( unknown ) == "number" ? unknown : defaultValue;
+      return typeof unknown == "number" ? unknown : defaultValue;
     },
 
     // ucren.fixString
     fixString: function( unknown, defaultValue ){
-      return typeof( unknown ) == "string" ? unknown : defaultValue;
+      return typeof unknown == "string" ? unknown : defaultValue;
     },
 
     // ucren.fixConfig
@@ -3253,12 +3253,12 @@ define("scripts/lib/ucren.js", function( exports ){
 
     // ucren.handle
     handle: function( unknown ){
-      var fn = arguments.callee, type = typeof( unknown ), number;
+      var fn = arguments.callee, type = typeof unknown, number;
 
       if( !fn.cache )
         fn.cache = {};
 
-      if( typeof( fn.number ) == "undefined" )
+      if( typeof fn.number == "undefined" )
         fn.number = 0;
 
       if( type == "number" ){
@@ -3630,7 +3630,7 @@ define("scripts/lib/ucren.js", function( exports ){
       },
 
       setClass: function( name ){
-        if( typeof( name ) == "string" )
+        if( typeof name == "string" )
           this.dom.className = name.trim();
 
         return this;
@@ -3678,7 +3678,7 @@ define("scripts/lib/ucren.js", function( exports ){
       left: function( number ){
         var el = this.dom;
 
-        if( typeof( number ) == "number" ){
+        if( typeof number == "number" ){
           el.style.left = number + "px";
           this.fireEvent( "infect", [{ left: number }] );
         }
@@ -3692,7 +3692,7 @@ define("scripts/lib/ucren.js", function( exports ){
       top: function( number ){
         var el = this.dom;
 
-        if( typeof( number ) == "number" ){
+        if( typeof number == "number" ){
           el.style.top = number + "px";
           this.fireEvent( "infect", [{ top: number }] );
         }
@@ -3746,7 +3746,7 @@ define("scripts/lib/ucren.js", function( exports ){
       display: function( bool ){
         var dom = this.dom;
 
-        if( typeof( bool ) == "boolean" ){
+        if( typeof bool == "boolean" ){
           dom.style.display = bool ? "block" : "none";
           this.fireEvent( "infect", [{ display: bool }] );
         }
