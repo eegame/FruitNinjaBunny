@@ -4012,8 +4012,7 @@ define("scripts/lib/ucren.js", function( exports ){
       useMouseAction: function( className, actions ){
         /**
          * 调用示例：el.useMouseAction( "xbutton", "over,out,down,up" );
-         * 使用效果：el会在"xbutton xbutton-over", "xbutton xbutton-out", "xbutton xbutton-down", "xbutton xbutton-up"
-         *           等四个className中根据相应的鼠标事件来进行切换。
+         * 使用效果：el会在"xbutton xbutton-over", "xbutton xbutton-out", "xbutton xbutton-down", "xbutton xbutton-up"四个className中根据相应的鼠标事件进行切换。
          * 特别提示：useMouseAction可使用不同参数多次调用。
          */
         if( !this.MouseAction )
