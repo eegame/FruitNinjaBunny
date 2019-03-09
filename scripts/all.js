@@ -1228,12 +1228,12 @@ define("scripts/factory/fruit.js", function( exports ){
   ClassFruit.prototype.set = function( hide ){
     var inf = infos[this.type], radius = this.radius;
 
-    this.shadow = layer.createImage( "fruit", "images/shadow.png", this.startX - radius, this.startY - radius + shadowPos, 106, 76 );
     this.image = layer.createImage( "fruit", inf[0], this.startX - radius, this.startY - radius, inf[1], inf[2] );
+    this.shadow = layer.createImage( "fruit", "images/shadow.png", this.startX - radius, this.startY - radius + shadowPos, 106, 76 );
 
     if( hide )
-      this.image.hide(),
-      this.shadow.hide();
+      this.shadow.hide(),
+      this.image.hide();
 
     return this;
   };
@@ -1311,8 +1311,8 @@ define("scripts/factory/fruit.js", function( exports ){
   // 分开
   ClassFruit.prototype.apart = function( angle ){
     this.anims.clear();
-    this.image.hide();
     this.shadow.hide();
+    this.image.hide();
     this.aparted = true;
 
     var inf = infos[this.type], preSrc = inf[0].replace( ".png", "" ), radius = this.radius;
@@ -1385,11 +1385,11 @@ define("scripts/factory/fruit.js", function( exports ){
     var index;
     this.anims.clear();
 
-    if( this.hasOwnProperty( "image" ) && this.image )
-      this.image.remove();
-
     if( this.hasOwnProperty( "shadow" ) && this.shadow )
       this.shadow.remove();
+
+    if( this.hasOwnProperty( "image" ) && this.image )
+      this.image.remove();
 
     if( this.hasOwnProperty( "bImage1" ) && this.bImage1 )
       this.bImage1.remove();
@@ -4672,7 +4672,7 @@ define("scripts/object/lose.js", function( exports ){
 
     createPosShow( x );
 
-    infx = inf[ ( ++number ) - 1 ];
+    infx = inf[++number - 1];
     infx[0].attr( "src", infx[1].src.replace( "x.png", "xf.png" ) ).scale( 1e-5, 1e-5 );
     this.scaleImage( infx[0] );
 
@@ -4719,7 +4719,6 @@ define("scripts/object/lose.js", function( exports ){
   function createPosShow( x ){
     var image = layer.createImage( "default", "images/lose.png", x - 27, 406, 54, 50 ).scale( 1e-5, 1e-5 );
     var duration = 500;
-
     var control = {
       show: function( start ){
         timeline.createTask({
