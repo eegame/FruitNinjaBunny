@@ -26,14 +26,14 @@ void function(global){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\collide.js
  */
 define("scripts/collide.js", function(exports){
+  /**
+   * 碰撞检测
+   */
   var ucren = require("scripts/lib/ucren");
   var fruit = require("scripts/factory/fruit");
 
   var fruits = fruit.getFruitInView();
 
-  /**
-   * 碰撞检测
-   */
   exports.check = function(knife){
     var ret = [], index = 0;
 
@@ -116,10 +116,10 @@ define("scripts/collide.js", function(exports){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\control.js
  */
 define("scripts/control.js", function(exports){
-  var ucren = require("scripts/lib/ucren");
-  var knife = require("scripts/object/knife");
   var message = require("scripts/message");
   var state = require("scripts/state");
+  var knife = require("scripts/object/knife");
+  var ucren = require("scripts/lib/ucren");
 
   var canvasLeft = 0, canvasTop = 0;
 
@@ -164,19 +164,19 @@ define("scripts/game.js", function( exports ){
   /**
    * game logic
    */
-  var timeline = require("scripts/timeline");
-  var ucren = require("scripts/lib/ucren");
-  var sound = require("scripts/lib/sound");
-  var fruit = require("scripts/factory/fruit");
-  var score = require("scripts/object/score");
+  //var scene = require("scripts/scene");
   var message = require("scripts/message");
+  var timeline = require("scripts/timeline");
   var state = require("scripts/state");
+  var fruit = require("scripts/factory/fruit");
+  var background = require("scripts/object/background");
+  var score = require("scripts/object/score");
+  var knife = require("scripts/object/knife");
+  var light = require("scripts/object/light");
   var lose = require("scripts/object/lose");
   var gameOver = require("scripts/object/game-over");
-  var knife = require("scripts/object/knife");
-  var background = require("scripts/object/background");
-  var light = require("scripts/object/light");
-  //var scene = require("scripts/scene");
+  var sound = require("scripts/lib/sound");
+  var ucren = require("scripts/lib/ucren");
 
   var gameInterval, snd, boomSnd, openSnd, startSnd, endSnd;
   var fruits = [], scoreNum = 0, volleyNum = 2, volleyMultipleNum = 5;
@@ -425,17 +425,17 @@ define("scripts/layer.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\main.js
  */
 define("scripts/main.js", function( exports ){
+  var scene = require("scripts/scene");
+  var collide = require("scripts/collide");
+  var control = require("scripts/control");
+  var message = require("scripts/message");
   var timeline = require("scripts/timeline");
   var tools = require("scripts/tools");
-  var scene = require("scripts/scene");
-  var ucren = require("scripts/lib/ucren");
-  var buzz = require("scripts/lib/buzz");
-  var control = require("scripts/control");
-  var csl = require("scripts/object/console");
-  var message = require("scripts/message");
   var state = require("scripts/state");
   var game = require("scripts/game");
-  var collide = require("scripts/collide");
+  var csl = require("scripts/object/console");
+  var buzz = require("scripts/lib/buzz");
+  var ucren = require("scripts/lib/ucren");
 
   var setTimeout = timeline.setTimeout.bind( timeline );
 
@@ -565,12 +565,12 @@ define("scripts/message.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\scene.js
  */
 define("scripts/scene.js", function( exports ){
-  var ucren = require("scripts/lib/ucren");
-  var sound = require("scripts/lib/sound");
+  var message = require("scripts/message");
+  var state = require("scripts/state");
   var fruit = require("scripts/factory/fruit");
   var flash = require("scripts/object/flash");
-  var state = require("scripts/state");
-  var message = require("scripts/message");
+  var sound = require("scripts/lib/sound");
+  var ucren = require("scripts/lib/ucren");
 
   // fixed elements
   var background = require("scripts/object/background");
@@ -588,13 +588,11 @@ define("scripts/scene.js", function( exports ){
   // elements in game body
   var score = require("scripts/object/score");
   var lose = require("scripts/object/lose");
+  var developing = require("scripts/object/developing");
+  var gameOver = require("scripts/object/game-over");
 
   // game logic
   var game = require("scripts/game");
-
-  // elements in "developing" module
-  var developing = require("scripts/object/developing");
-  var gameOver = require("scripts/object/game-over");
 
   // commons
   var message = require("scripts/message");
@@ -733,25 +731,22 @@ define("scripts/state.js", function( exports ){
   /**
    * a simple state manager
    */
+  /**
+   * usage:
+   * state( key ).is( value )    -> determine if value of key is given value
+   * state( key ).isnot( value ) -> determine if value of key is not given value
+   * state( key ).ison()         -> determine if value of key is boolean value 'true'
+   * state( key ).isoff()        -> determine if value of key is boolean value 'false'
+   * state( key ).isunset()      -> determine if value of key is undefined
+   * state( key ).set( value )   -> set value of key to given value
+   * state( key ).get()          -> get value of key
+   * state( key ).on()           -> set value of key to boolean value 'true'
+   * state( key ).off()          -> set value of key to boolean value 'false'
+   */
   var ucren = require("scripts/lib/ucren");
   var timeline = require("scripts/timeline");
 
-  /**
-   * usage:
-   * state( key ).is( value )    -> determine if the value of key is the given value
-   * state( key ).isnot( value ) -> determine if the value of key is not given value
-   * state( key ).ison()         -> determine if the value of key is the boolean value 'true'
-   * state( key ).isoff()        -> determine if the value of key is the boolean value 'false'
-   * state( key ).isunset()      -> determine if the value of key is undefined
-   * state( key ).set( value )   -> set the value of key to a given value
-   * state( key ).get()          -> get the value of key
-   * state( key ).on()           -> set the value of key to boolean value 'true'
-   * state( key ).off()          -> set the value of key to boolean value 'false'
-   */
-
-  var stack = {};
-  var cache = {};
-  var callbacks = {};
+  var stack = {}, cache = {}, callbacks = {};
 
   exports = function( key ){
     if( cache[ key ] )
@@ -806,20 +801,20 @@ define("scripts/state.js", function( exports ){
 
       off: function(){
         var me = this;
-          me.set( false );
-          return {
-            keep: function( time ){
-              timeline.setTimeout( me.set.saturate( me, true ), time );
-            }
+        me.set( false );
+        return {
+          keep: function( time ){
+            timeline.setTimeout( me.set.saturate( me, true ), time );
           }
+        }
       },
 
       hook: function( fn ){
         var c;
-          if( !( c = callbacks[ key ] ) )
-            callbacks[ key ] = [ fn ];
-          else
-            c.push( fn );
+        if( !( c = callbacks[ key ] ) )
+          callbacks[ key ] = [ fn ];
+        else
+          c.push( fn );
       },
 
       unhook: function(){
@@ -835,13 +830,12 @@ define("scripts/state.js", function( exports ){
  */
 define("scripts/timeline.js", function( exports ){
   /**
-   * a easy timeline manager
+   * a simple timeline manager
    * @version 1.0
    */
   var ucren = require("scripts/lib/ucren");
-  var timerCache = {};
-  var timeline = {};
 
+  var timeline = {}, timerCache = {};
   //var timer = timeline;
   // <or>
   //var timer = timeline.use( name ).init( 10 ); // to use a new timeline instance
@@ -895,6 +889,7 @@ define("scripts/timeline.js", function( exports ){
       recycle: []
     });
     */
+
     var task = createTask( conf );
       this.addingTasks.unshift( task );
       this.adding = 1;
@@ -1117,13 +1112,13 @@ define("scripts/tools.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\factory\displacement.js
  */
 define("scripts/factory/displacement.js", function( exports ){
+  /**
+   * 位移类模块模型
+   */
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline");
   var tween = require("scripts/lib/tween");
 
-  /**
-   * 位移类模块模型
-   */
   exports.create = function( imageSrc, width, height, origX, origY, targetX, targetY, animMap, animDur ){
     var module = {};
     var image;
@@ -1185,21 +1180,20 @@ define("scripts/factory/displacement.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\factory\fruit.js
  */
 define("scripts/factory/fruit.js", function( exports ){
-  var layer = require("scripts/layer");
-  var ucren = require("scripts/lib/ucren");
-  var timeline = require("scripts/timeline").use( "fruit" ).init( 1 );
-  var timeline2 = require("scripts/timeline").use( "fruit-apart" ).init( 1 );
-  var tween = require("scripts/lib/tween");
-  var message = require("scripts/message");
-  var flame = require("scripts/object/flame");
-  var flash = require("scripts/object/flash");
-  var juice = require("scripts/factory/juice");
-
-  var ie = ucren.isIe, safari = ucren.isSafari;
-
   /**
    * 水果模块模型
    */
+  var layer = require("scripts/layer");
+  var message = require("scripts/message");
+  var timeline = require("scripts/timeline").use( "fruit" ).init( 1 );
+  var timeline2 = require("scripts/timeline").use( "fruit-apart" ).init( 1 );
+  var flame = require("scripts/object/flame");
+  var flash = require("scripts/object/flash");
+  var juice = require("scripts/factory/juice");
+  var tween = require("scripts/lib/tween");
+  var ucren = require("scripts/lib/ucren");
+
+  var ie = ucren.isIe, safari = ucren.isSafari;
   var zoomAnim = tween.exponential.co;
   var rotateAnim = tween.circular;
   var linearAnim = tween.linear;
@@ -1572,11 +1566,11 @@ define("scripts/factory/juice.js", function( exports ){
   /**
    * 果汁
    */
-  var ucren = require("scripts/lib/ucren");
   var layer = require("scripts/layer").getLayer("juice");
   var timeline = require("scripts/timeline").use( "juice" ).init( 10 );
-  var tween = require("scripts/lib/tween");
   var tools = require("scripts/tools");
+  var tween = require("scripts/lib/tween");
+  var ucren = require("scripts/lib/ucren");
 
   var random = ucren.randomNumber;
   var anim = tween.exponential.co, dropAnim = tween.quadratic.co;
@@ -1646,13 +1640,13 @@ define("scripts/factory/juice.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\factory\rotate.js
  */
 define("scripts/factory/rotate.js", function( exports ){
+  /**
+   * 旋转类模块模型
+   */
   var layer = require("scripts/layer");
   var timeline = require("scripts/timeline");
   var ucren = require("scripts/lib/ucren");
 
-  /**
-   * 旋转类模块模型
-   */
   exports.create = function( imageSrc, x, y, w, h, z, anim, animDur ){
     var module = {}, image;
     var rotateDire = [12, -12][ucren.randomNumber(2)];
@@ -2625,10 +2619,8 @@ define("scripts/lib/sound.js", function( exports ){
   /**
    * 简易声效控制
    */
-
   /**
-   * 使用方法
-   *
+   * usage:
    * var sound = require("scripts/lib/sound/main");
    * var snd = sound.create("sounds/myfile");
    * snd.play();
@@ -2713,8 +2705,7 @@ define("scripts/lib/ucren.js", function( exports ){
    * filename: boot.js
    * version: 5.0.2.20120628
    */
-  var ucren;
-  var blankArray = [];
+  var ucren, blankArray = [];
   var slice = blankArray.slice, join = blankArray.join;
 
   //
@@ -4131,16 +4122,16 @@ define("scripts/object/console.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\developing.js
  */
 define("scripts/object/developing.js", function( exports ){
+  /**
+   * "developing"模块
+   */
   var layer = require("scripts/layer");
-  var tween = require("scripts/lib/tween");
-  var timeline = require("scripts/timeline");
   var message = require("scripts/message");
+  var timeline = require("scripts/timeline");
+  var tween = require("scripts/lib/tween");
 
   var exponential = tween.exponential.co;
 
-  /**
-   * "coming soon"模块
-   */
   exports.anims = [];
 
   exports.set = function(){
@@ -4375,17 +4366,17 @@ define("scripts/object/fps.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\game-over.js
  */
 define("scripts/object/game-over.js", function( exports ){
-  var layer = require("scripts/layer");
-  var tween = require("scripts/lib/tween");
-  var timeline = require("scripts/timeline");
-  var message = require("scripts/message");
-  var state = require("scripts/state");
-
-  var exponential = tween.exponential.co;
-
   /**
    * "game over"模块
    */
+  var layer = require("scripts/layer");
+  var message = require("scripts/message");
+  var state = require("scripts/state");
+  var timeline = require("scripts/timeline");
+  var tween = require("scripts/lib/tween");
+
+  var exponential = tween.exponential.co;
+
   exports.anims = [];
 
   exports.set = function(){
@@ -4452,19 +4443,19 @@ define("scripts/object/home-mask.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\knife.js
  */
 define("scripts/object/knife.js", function( exports ){
-  var timeline = require("scripts/timeline");
-  var layer = require("scripts/layer").getLayer( "knife" );
-  var ucren = require("scripts/lib/ucren");
-
   /**
    * 刀光模块
    */
+  var layer = require("scripts/layer").getLayer( "knife" );
+  var timeline = require("scripts/timeline");
+  var ucren = require("scripts/lib/ucren");
+
   var lastX = null, lastY = null;
-  var abs = Math.abs;
   var life = 200, stroke = 10;
-  var color = "#cbd3db";
   var anims = [], knifes = [];
   var switchState = true;
+  var color = "#cbd3db";
+  var abs = Math.abs;
 
   function ClassKnifePart( conf ){
     this.sx = conf.sx;
@@ -4565,9 +4556,9 @@ define("scripts/object/light.js", function( exports ){
   var maskLayer = layer.getLayer("mask");
   layer = layer.getLayer("light");
 
-  var ucren = require("scripts/lib/ucren");
-  var timeline = require("scripts/timeline");
   var message = require("scripts/message");
+  var timeline = require("scripts/timeline");
+  var ucren = require("scripts/lib/ucren");
 
   var sin = Math.sin, cos = Math.cos, pi = Math.PI, random = ucren.randomNumber;
   var lightsNum = 10, lights = [], indexes = [];
@@ -4656,10 +4647,10 @@ define("scripts/object/logo.js", function( exports ){
  */
 define("scripts/object/lose.js", function( exports ){
   var layer = require("scripts/layer");
-  var tween = require("scripts/lib/tween");
-  var timeline = require("scripts/timeline");
-  var ucren = require("scripts/lib/ucren");
   var message = require("scripts/message");
+  var timeline = require("scripts/timeline");
+  var tween = require("scripts/lib/tween");
+  var ucren = require("scripts/lib/ucren");
 
   var anim = tween.exponential.co, back = tween.back.co;
   var o1, o2, o3, number = 0, animLength = 500;
@@ -4836,18 +4827,17 @@ define("scripts/object/quit.js", function( exports ){
  * @source D:\hosting\demos\fruit-ninja\output\scripts\object\score.js
  */
 define("scripts/object/score.js", function( exports ){
+  /**
+   * 分数模块
+   */
   var layer = require("scripts/layer");
-  var timeline = require("scripts/timeline");
   var message = require("scripts/message");
+  var timeline = require("scripts/timeline");
   var tween = require("scripts/lib/tween");
   var ucren = require("scripts/lib/ucren");
 
   var setTimeout = timeline.setTimeout.bind( timeline );
   var anim = tween.exponential.co;
-
-  /**
-   * 分数模块
-   */
   var image, text, animLength = 500;
   var imageSx = -94, imageEx = 6, textSx = -59, textEx = 41;
 
