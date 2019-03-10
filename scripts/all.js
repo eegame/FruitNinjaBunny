@@ -3849,24 +3849,13 @@ define("scripts/lib/ucren.js", function( exports ){
           }
         }
 
-        if( el.parentNode ){
-          parentNode = el.parentNode;
-        }
-        else{
-          parentNode = null;
-        }
+        parentNode = el.parentNode ? el.parentNode : null;
 
         while( parentNode && parentNode.tagName.toUpperCase() != "BODY" &&
           parentNode.tagName.toUpperCase() != "HTML" ){ // account for any scrolled ancestors
           pos.x -= parentNode.scrollLeft;
           pos.y -= parentNode.scrollTop;
-
-          if( parentNode.parentNode ){
-            parentNode = parentNode.parentNode;
-          }
-          else{
-            parentNode = null;
-          }
+          parentNode = parentNode.parentNode ? parentNode.parentNode : null;
         }
 
         return pos;
@@ -3910,15 +3899,15 @@ define("scripts/lib/ucren.js", function( exports ){
         return this;
       },
 
-      usePNGbackground: function( image ){
+      usePngBackground: function( image ){
         var dom = this.dom;
 
         if( /\.png$/i.test( image ) && ucren.isIe6 ){
           dom.style.filter =
             "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='" +
             image + "',sizingMethod='scale' );";
-          /// _background: none;
-          /// _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='images/pic.png',sizingMethod='scale' );
+          ///_background: none;
+          ///_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='images/pic.png',sizingMethod='scale' );
         }
         else{
           dom.style.backgroundImage = "url( " + image + " )";
