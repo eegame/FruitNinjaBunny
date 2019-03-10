@@ -891,7 +891,7 @@ define("scripts/timeline.js", function( exports ){
 
   /**
    * use an array to recycle the task
-   * @param  {Array} queue  for recycling task
+   * @param  {Array} queue  for recycling the task
    * @param  {Task}  task   a task instance
    * @return {Array} this   this queue
    */
