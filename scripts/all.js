@@ -611,8 +611,7 @@ define("scripts/scene.js", function( exports ){
   exports.switchScene = function( name ){
     var curScene = state( "scene-name" ), sceneState = state( "scene-state" );
 
-    if( curScene.is( name ) )
-      return;
+    if( curScene.is( name ) ) return;
 
     var onHide = function(){
       curScene.set( name );
@@ -627,11 +626,10 @@ define("scripts/scene.js", function( exports ){
     var onShow = function(){
       sceneState.set( "ready" );
 
-      if( name == "quit-body" ){
-        firstGame = true;
-        lastBoom = 0;
+      if( name == "quit-body" )
+        firstGame = true,
+        lastBoom = 0,
         exports.switchScene( "home-menu" );
-      }
     };
 
     sceneState.set( "exiting" );
