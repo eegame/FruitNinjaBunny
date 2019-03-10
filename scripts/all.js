@@ -681,10 +681,10 @@ define("scripts/scene.js", function( exports ){
 
   // enter game body
   exports.showNewGame = function( callback ){
+    startSnd.play();
     score.show();
     lose.show();
     game.start();
-    startSnd.play();
     setTimeout( callback, 1000 );
   };
 
@@ -1220,8 +1220,8 @@ define("scripts/factory/fruit.js", function( exports ){
   ClassFruit.prototype.set = function( hide ){
     var inf = infos[this.type], radius = this.radius;
 
-    this.image = layer.createImage( "fruit", inf[0], this.startX - radius, this.startY - radius, inf[1], inf[2] );
     this.shadow = layer.createImage( "fruit", "images/shadow.png", this.startX - radius, this.startY - radius + shadowPos, 106, 76 );
+    this.image = layer.createImage( "fruit", inf[0], this.startX - radius, this.startY - radius, inf[1], inf[2] );
 
     if( hide )
       this.shadow.hide(),
@@ -1239,8 +1239,8 @@ define("scripts/factory/fruit.js", function( exports ){
     this.originX = x;
     this.originY = y;
 
-    this.image.attr({ x: x -= r, y: y -= r });
-    this.shadow.attr({ x: x, y: y + shadowPos });
+    this.shadow.attr({ x: x -= r, y: ( y -= r ) + shadowPos });
+    this.image.attr({ x: x, y: y });
 
     if( this.type === "boom" )
       this.flame.pos( x + 4, y + 5 );
@@ -1258,7 +1258,7 @@ define("scripts/factory/fruit.js", function( exports ){
     if( this.type !== "boom" )
       return;
 
-    boomSnd.play(),
+    boomSnd.play();
     this.anims.clear();
 
     timeline.createTask({
@@ -1410,13 +1410,13 @@ define("scripts/factory/fruit.js", function( exports ){
 
   // 显示/隐藏相关
   ClassFruit.prototype.onShowStart = function(){
-    this.image.show();
     //this.shadow.show();
+    this.image.show();
   };
 
   ClassFruit.prototype.onScaling = function( time, a, b, z ){
-    this.image.scale( z = zoomAnim( time, a, b - a, 500 ), z );
-    this.shadow.scale( z, z );
+    this.shadow.scale( z = zoomAnim( time, a, b - a, 500 ), z );
+    this.image.scale( z, z );
   };
 
   ClassFruit.prototype.onHideEnd = function(){
@@ -3174,7 +3174,7 @@ define("scripts/lib/ucren.js", function( exports ){
     Element: function( el, returnDom ){
       var rtn, handleId;
 
-      if( el && el.isucrenElement ){
+      if( el && el.isUcrenElement ){
         return returnDom ? el.dom : el;
       }
 
@@ -3577,7 +3577,7 @@ define("scripts/lib/ucren.js", function( exports ){
 
     /* methods */
     {
-      isucrenElement: true,
+      isUcrenElement: true,
 
       attr: function( name, value ){
         if( typeof value == "string" )
@@ -4337,8 +4337,8 @@ define("scripts/object/flash.js", function( exports ){
       y: y + yDiff
     }).show();
 
-    anims.clear && anims.clear();
     snd.play();
+    anims.clear && anims.clear();
 
     timeline.createTask({
       start: 0, duration: dur, data: [ 1e-5, 1 ],
