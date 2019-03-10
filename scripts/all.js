@@ -830,7 +830,6 @@ define("scripts/timeline.js", function( exports ){
   // <or>
   //var timer = timeline.use(name).init(10); // to use a new timeline instance
   //var t = timer.createTask(...);
-  //
   //t.stop();
   //timer.setTimeout(...);
   //timer.setInterval(...);
